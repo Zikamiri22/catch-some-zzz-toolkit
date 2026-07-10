@@ -1,17 +1,30 @@
-# Catch Some ZZZ Guild Toolkit v3.1
+# Catch Some ZZZ Guild Toolkit v3.2
 
 GitHub Pages ready web package.
 
-## v3.1 changes
+## v3.2 changes
 
-* Reorganized app navigation into Home, Account, Activities, Tools, Raiding, and Guild groups
-* New customizable dashboard with a standard default layout
-* Add to Dashboard controls throughout the app
-* Widget selection, removal, and ordering saved locally in `cszzz-dashboard-layout-v1`
-* Complete visual refresh based on the official Catch Some ZZZ logo palette
-* Dark charcoal and deep purple surfaces with neon cyan, pink, and violet accents
-* Responsive desktop sidebar and mobile slide out navigation
-* Updated PWA theme colors and service worker cache to v3.1
+* Expanded Catch Some ZZZ guild identity throughout the application
+* Larger official guild logo treatment in the sidebar
+* Branded dashboard hero with the Catch Some ZZZ mascot and guild copy
+* Branded API connection experience
+* Subtle guild logo marks across section headers
+* Guild branded footer and leadership treatment
+* Universal GW2 Wiki link helper for account data
+* Wallet currency names now link to the GW2 Wiki
+* Favorite currency dashboard entries now link to the GW2 Wiki
+* Material Storage item names now link to the GW2 Wiki
+* Bank item names now link to the GW2 Wiki
+* Item Finder results and dashboard finder summaries now link to the GW2 Wiki
+* Legendary Armory entries now link to the GW2 Wiki
+* Legendary material and currency tracker entries now link to the GW2 Wiki
+* Dashboard account coin label links to the GW2 Wiki
+* Preserves the customizable dashboard and grouped navigation introduced in v3.1
+* Service worker cache updated to v3.2
+
+## Wiki linking standard
+
+Displayed GW2 items, materials, and currencies use the shared Wiki link helper and open the Guild Wars 2 Wiki in a new tab. New features should use the same helper instead of hardcoding individual Wiki URLs.
 
 ## Privacy model
 
