@@ -1,4 +1,4 @@
-const CACHE_NAME = 'catch-some-zzz-toolkit-web-v1';
+const CACHE_NAME = 'cszzz-toolkit-v2.3';
 const APP_SHELL = [
   './',
   './index.html',

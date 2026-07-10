@@ -738,6 +738,38 @@
     opacity:.8;
   }
 
+
+  /* v2 feature cards */
+  .feature-hero{background:linear-gradient(135deg,rgba(178,109,245,.12),rgba(201,162,75,.10));border:1px solid var(--hairline);border-radius:12px;padding:18px;margin-bottom:16px}
+  .feature-hero h3{font-family:'Cinzel',serif;color:var(--gold-bright);margin:0 0 6px;font-size:18px}
+  .feature-hero p{color:var(--muted);margin:0;line-height:1.55;font-size:13px}
+  .tracker-grid,.weekly-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+  .tracker-card,.weekly-card{background:var(--bg-panel);border:1px solid var(--hairline);border-radius:10px;padding:16px}
+  .tracker-card h3,.weekly-card h3{font-family:'Cinzel',serif;font-size:15px;color:var(--parchment);margin:0 0 10px}
+  .progress-track{height:9px;background:var(--bg);border-radius:999px;overflow:hidden;border:1px solid var(--hairline);margin:10px 0}
+  .progress-fill{height:100%;background:linear-gradient(90deg,var(--violet),var(--gold));border-radius:999px;transition:width .25s ease}
+  .milestone-list{display:grid;gap:7px;margin-top:10px}
+  .milestone{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted)}
+  .milestone input,.weekly-check input{accent-color:var(--violet);width:16px;height:16px}
+  .goal-toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:12px 0 18px}
+  .goal-toolbar select{flex:1;min-width:240px;background:var(--bg);border:1px solid var(--hairline);border-radius:6px;padding:12px 14px;color:var(--parchment);font-family:'Spectral',serif}
+  .armory-summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:10px;margin:12px 0 20px}
+  .armory-stat{background:var(--bg-panel);border:1px solid var(--hairline);border-radius:9px;padding:14px}
+  .armory-stat .n{font-family:'Cinzel',serif;font-size:22px;color:var(--gold-bright)}
+  .armory-stat .l{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-top:4px}
+  .finder-status{font-size:12px;color:var(--muted);margin:8px 0 14px}
+  .finder-result{background:var(--bg-panel);border:1px solid var(--hairline);border-radius:9px;padding:12px 14px;margin-bottom:8px;display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center}
+  .finder-main{display:flex;gap:10px;align-items:center}.finder-main img{width:34px;height:34px;border-radius:5px}
+  .finder-name{font-size:14px}.finder-total{font-family:'JetBrains Mono',monospace;color:var(--gold-bright);font-size:14px;text-align:right}
+  .location-chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}.location-chip{font-size:11px;color:var(--muted);border:1px solid var(--hairline);border-radius:999px;padding:3px 7px}
+  .weekly-check{display:flex;align-items:center;justify-content:space-between;gap:10px;border-top:1px solid var(--hairline);padding:9px 0;font-size:13px}
+  .weekly-check:first-of-type{border-top:0}.weekly-check label{display:flex;align-items:center;gap:8px;cursor:pointer;flex:1}
+  .weekly-status{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted)}
+  .weekly-status.done{color:var(--gold-bright)}
+  .weekly-overall{background:var(--bg-panel);border:1px solid var(--hairline);border-radius:12px;padding:18px;margin-bottom:18px;display:flex;justify-content:space-between;gap:18px;align-items:center;flex-wrap:wrap}
+  .weekly-overall .big{font-family:'Cinzel',serif;font-size:24px;color:var(--gold-bright)}
+  @media(max-width:620px){.finder-result{grid-template-columns:1fr}.finder-total{text-align:left}.goal-toolbar select{min-width:100%}}
+
 </style>
 
 <link rel="manifest" href="manifest.webmanifest">
@@ -802,6 +834,9 @@
       <button class="tab-btn" data-tab="bank">Bank</button>
       <button class="tab-btn" data-tab="provisioner">Provisioner Exchange</button>
       <button class="tab-btn" data-tab="crafting">Crafting Helper</button>
+      <button class="tab-btn" data-tab="weekly">Weekly Dashboard</button>
+      <button class="tab-btn" data-tab="finder">Item Finder</button>
+      <button class="tab-btn" data-tab="legendary">Legendary Progress</button>
     </div>
 
     <div class="panel active" id="panel-overview">
@@ -914,6 +949,29 @@
     </div>
   </div>
 
+    <div class="panel" id="panel-legendary">
+      <div class="feature-hero"><h3>Legendary Progress Tracker</h3><p>See what is already in your Legendary Armory, choose your next target, and track the major crafting milestones. Goal progress is stored only in this browser.</p></div>
+      <div class="section-title">Your Legendary Armory</div>
+      <div id="armorySummary"><div class="loading-row"><div class="spinner"></div>Checking the armory…</div></div>
+      <div class="section-title">Crafting Goals</div>
+      <div class="goal-toolbar"><select id="legendaryGoalSelect"><option value="">Loading legendary items…</option></select><button id="addLegendaryGoalBtn" type="button">Add Goal</button></div>
+      <div id="legendaryGoals" class="tracker-grid"><div class="empty-note">Add a legendary target to start tracking progress.</div></div>
+    </div>
+
+    <div class="panel" id="panel-finder">
+      <div class="feature-hero"><h3>Account Wide Item Finder</h3><p>Search Material Storage, Bank, Shared Inventory, and character bags in one place. Character bags require the characters permission on the API key.</p></div>
+      <div class="toolbar"><input class="search-input" type="text" id="accountWideSearch" placeholder="Search your entire account…"><div class="result-count" id="accountWideCount"></div></div>
+      <div class="finder-status" id="finderStatus">Loading account locations…</div>
+      <div id="accountWideResults"><div class="empty-note">Search for an item to see every loaded location.</div></div>
+    </div>
+
+    <div class="panel" id="panel-weekly">
+      <div class="feature-hero"><h3>Weekly Raid & Strike Dashboard</h3><p>Keep one simple weekly checklist for raid wings and strike groups. Raid completion is synced from the GW2 API when available, while the checklist remains under your control and resets with a new week.</p></div>
+      <div id="weeklyOverall" class="weekly-overall"><div><div class="big">Weekly Progress</div><div style="color:var(--muted);font-size:13px">Loading your checklist…</div></div></div>
+      <div class="weekly-grid"><div class="weekly-card"><h3>Raid Wings</h3><div id="raidWeeklyChecks"></div></div><div class="weekly-card"><h3>Strike Groups</h3><div id="strikeWeeklyChecks"></div></div></div>
+      <div style="text-align:right;margin-top:14px"><button class="ghost" id="resetWeeklyBtn" type="button">Reset This Week</button></div>
+    </div>
+
 </div>
 
 
@@ -921,7 +979,7 @@
     <button id="installAppBtn">Install Toolkit App</button>
     <div class="key-note" style="margin-top:10px;">Optional: install this site like an app on supported browsers.</div>
   </div>
-<div class="version-stamp">Catch Some ZZZ Guild Toolkit • Web Edition
+<div class="version-stamp">Catch Some ZZZ Guild Toolkit • Web Edition • v2.3
   </div>
 <script>
 const CLEAN_SHARE_SOURCE = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
@@ -1406,6 +1464,85 @@ function loc_escape(s){ return s; }
 /* ---------- Sharing & local privacy ---------- */
 
 
+
+const LEGENDARY_GOALS_KEY = 'cszzz-legendary-goals-v1';
+let legendaryCatalog = [];
+let legendaryOwned = new Map();
+const LEGENDARY_MILESTONES = ['Plan and unlock requirements','Precursor or precursor collection','Major account-bound gifts','Clovers, tribute, and tradeable materials','Final gifts and forge or craft'];
+function getLegendaryGoals(){ try{return JSON.parse(localStorage.getItem(LEGENDARY_GOALS_KEY)||'{}');}catch(e){return {};} }
+function saveLegendaryGoals(v){ localStorage.setItem(LEGENDARY_GOALS_KEY,JSON.stringify(v)); }
+async function loadLegendaryTracker(){
+  const summary=document.getElementById('armorySummary'); const select=document.getElementById('legendaryGoalSelect');
+  if(!summary||!select) return;
+  try{
+    const [available, owned] = await Promise.all([gw2Fetch('/legendaryarmory?ids=all',false), gw2Fetch('/account/legendaryarmory')]);
+    const ids=available.map(x=>x.id); const items=await fetchItemsByIds(ids); const itemMap=Object.fromEntries(items.map(x=>[x.id,x]));
+    legendaryCatalog=available.map(x=>({id:x.id,max_count:x.max_count,item:itemMap[x.id]})).filter(x=>x.item).sort((a,b)=>a.item.name.localeCompare(b.item.name));
+    legendaryOwned=new Map((owned||[]).map(x=>[x.id,x.count]));
+    const ownedKinds=legendaryOwned.size; const ownedCopies=[...legendaryOwned.values()].reduce((a,b)=>a+b,0);
+    const weapons=legendaryCatalog.filter(x=>x.item.type==='Weapon').length; const armor=legendaryCatalog.filter(x=>x.item.type==='Armor').length; const trinkets=legendaryCatalog.filter(x=>['Trinket','Back'].includes(x.item.type)).length;
+    summary.innerHTML=`<div class="armory-summary"><div class="armory-stat"><div class="n">${ownedKinds}</div><div class="l">Unique Legendaries</div></div><div class="armory-stat"><div class="n">${ownedCopies}</div><div class="l">Armory Copies</div></div><div class="armory-stat"><div class="n">${weapons}</div><div class="l">Weapon Options</div></div><div class="armory-stat"><div class="n">${armor+trinkets}</div><div class="l">Armor & Trinket Options</div></div></div>`;
+    select.innerHTML='<option value="">Choose a legendary target…</option>'+legendaryCatalog.map(x=>`<option value="${x.id}">${x.item.name}${legendaryOwned.has(x.id)?' ✓ Owned':''}</option>`).join('');
+    renderLegendaryGoals();
+  }catch(e){ summary.innerHTML=`<div class="empty-note">Could not load Legendary Armory: ${e.message}</div>`; select.innerHTML='<option value="">Armory unavailable</option>'; }
+}
+function addLegendaryGoal(){ const select=document.getElementById('legendaryGoalSelect'); const id=Number(select.value); if(!id)return; const goals=getLegendaryGoals(); if(!goals[id]) goals[id]={checks:[false,false,false,false,false]}; saveLegendaryGoals(goals); renderLegendaryGoals(); }
+function toggleLegendaryMilestone(id,idx,checked){ const goals=getLegendaryGoals(); if(!goals[id])return; goals[id].checks[idx]=checked; saveLegendaryGoals(goals); renderLegendaryGoals(); }
+function removeLegendaryGoal(id){ const goals=getLegendaryGoals(); delete goals[id]; saveLegendaryGoals(goals); renderLegendaryGoals(); }
+function renderLegendaryGoals(){ const out=document.getElementById('legendaryGoals'); if(!out)return; const goals=getLegendaryGoals(); const rows=Object.entries(goals); if(!rows.length){out.innerHTML='<div class="empty-note">Add a legendary target to start tracking progress.</div>';return;} out.innerHTML=rows.map(([id,g])=>{ const cat=legendaryCatalog.find(x=>x.id===Number(id)); if(!cat)return''; const owned=legendaryOwned.has(Number(id)); const checks=g.checks||[]; const done=owned?5:checks.filter(Boolean).length; const pct=Math.round(done/5*100); return `<div class="tracker-card"><div style="display:flex;gap:10px;align-items:center">${iconImg(cat.item.icon,38)}<div style="flex:1"><h3>${cat.item.name}</h3><div style="font-size:12px;color:${owned?'var(--gold-bright)':'var(--muted)'}">${owned?'✓ Already in your armory':`${done} of 5 milestones complete`}</div></div><button class="ghost" style="padding:7px 9px" onclick="removeLegendaryGoal(${id})">×</button></div><div class="progress-track"><div class="progress-fill" style="width:${pct}%"></div></div><div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--gold-bright)">${pct}% tracked</div><div class="milestone-list">${LEGENDARY_MILESTONES.map((m,i)=>`<label class="milestone"><input type="checkbox" ${owned||checks[i]?'checked':''} ${owned?'disabled':''} onchange="toggleLegendaryMilestone(${id},${i},this.checked)"><span>${m}</span></label>`).join('')}</div><div class="crafting-links" style="margin-top:12px"><a class="tool-link secondary" target="_blank" rel="noopener" href="https://wiki.guildwars2.com/index.php?search=${encodeURIComponent(cat.item.name)}">Wiki</a><a class="tool-link secondary" target="_blank" rel="noopener" href="https://gw2efficiency.com/crafting/calculator">GW2Efficiency</a></div></div>`; }).join(''); }
+
+
+
+let accountWideItems=[];
+function addFinderEntry(id,count,location){ if(!id||!count)return; accountWideItems.push({id,count,location}); }
+async function loadAccountWideFinder(){
+  const status=document.getElementById('finderStatus'); if(!status)return; accountWideItems=[];
+  (materialViewData||[]).forEach(x=>addFinderEntry(x.item.id,x.count,'Material Storage'));
+  (bankViewData||[]).forEach(x=>addFinderEntry(x.item.id,x.count,'Bank'));
+  try{ const shared=await gw2Fetch('/account/inventory'); (shared||[]).filter(Boolean).forEach(x=>addFinderEntry(x.id,x.count||1,'Shared Inventory')); }catch(e){ console.warn('Shared inventory unavailable',e); }
+  let characterLoaded=false;
+  try{
+    const token=await gw2Fetch('/tokeninfo'); if((token.permissions||[]).includes('characters')){
+      const chars=await gw2Fetch('/characters?ids=all'); (chars||[]).forEach(ch=>(ch.bags||[]).filter(Boolean).forEach(b=>(b.inventory||[]).filter(Boolean).forEach(x=>addFinderEntry(x.id,x.count||1,`Character: ${ch.name}`)))); characterLoaded=true;
+    }
+  }catch(e){ console.warn('Character inventory unavailable',e); }
+  const ids=[...new Set(accountWideItems.map(x=>x.id))]; await fetchItemsByIds(ids);
+  status.textContent=`Loaded ${ids.length.toLocaleString()} unique item types across storage${characterLoaded?' and character bags':'. Add the characters permission to include character bags'}.`;
+  renderAccountWideSearch();
+}
+function renderAccountWideSearch(){
+  const input=document.getElementById('accountWideSearch'),out=document.getElementById('accountWideResults'),count=document.getElementById('accountWideCount'); if(!input||!out)return;
+  const q=input.value.trim().toLowerCase(); if(q.length<2){out.innerHTML='<div class="empty-note">Type at least two letters to search your account.</div>';count.textContent='';return;}
+  const grouped=new Map(); accountWideItems.forEach(x=>{const it=itemCache[x.id];if(!it||!it.name.toLowerCase().includes(q))return; if(!grouped.has(x.id))grouped.set(x.id,{item:it,total:0,locations:new Map()}); const g=grouped.get(x.id);g.total+=x.count;g.locations.set(x.location,(g.locations.get(x.location)||0)+x.count);});
+  const rows=[...grouped.values()].sort((a,b)=>a.item.name.localeCompare(b.item.name)); count.textContent=`${rows.length} result${rows.length===1?'':'s'}`; if(!rows.length){out.innerHTML='<div class="empty-note">Nothing found across the loaded account locations.</div>';return;}
+  out.innerHTML=rows.slice(0,100).map(g=>`<div class="finder-result"><div class="finder-main">${iconImg(g.item.icon,34)}<div><div class="finder-name">${g.item.name}</div><div class="location-chips">${[...g.locations.entries()].map(([loc,n])=>`<span class="location-chip">${loc}: ${n.toLocaleString()}</span>`).join('')}</div></div></div><div class="finder-total">Total ${g.total.toLocaleString()}</div></div>`).join('');
+}
+
+
+
+const WEEKLY_PREFIX='cszzz-weekly-v1-';
+const RAID_GROUPS=[
+  {id:'w1',name:'Wing 1 • Spirit Vale',events:['vale_guardian','spirit_woods','gorseval','sabetha']},
+  {id:'w2',name:'Wing 2 • Salvation Pass',events:['slothasor','bandit_trio','matthias']},
+  {id:'w3',name:'Wing 3 • Stronghold of the Faithful',events:['escort','keep_construct','twisted_castle','xera']},
+  {id:'w4',name:'Wing 4 • Bastion of the Penitent',events:['cairn','mursaat_overseer','samarog','deimos']},
+  {id:'w5',name:'Wing 5 • Hall of Chains',events:['soulless_horror','river_of_souls','statues_of_grenth','voice_in_the_void']},
+  {id:'w6',name:'Wing 6 • Mythwright Gambit',events:['conjured_amalgamate','twin_largos','qadim']},
+  {id:'w7',name:'Wing 7 • The Key of Ahdashim',events:['cardinal_adina','cardinal_sabir','qadim_the_peerless']},
+  {id:'w8',name:'Wing 8 • Mount Balrior',events:[]}
+];
+const STRIKE_GROUPS=[{id:'ibs5',name:'IBS Fast 5'},{id:'cw',name:'Cold War'},{id:'fs',name:'Forging Steel'},{id:'eod',name:'End of Dragons Strikes'},{id:'soto',name:'Secrets of the Obscure Strikes'},{id:'jw',name:'Janthir Wilds Strikes'}];
+function weekKey(){const d=new Date();const date=new Date(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate()));const day=date.getUTCDay()||7;date.setUTCDate(date.getUTCDate()+4-day);const yearStart=new Date(Date.UTC(date.getUTCFullYear(),0,1));const week=Math.ceil((((date-yearStart)/86400000)+1)/7);return WEEKLY_PREFIX+date.getUTCFullYear()+'-'+String(week).padStart(2,'0');}
+function getWeekly(){try{return JSON.parse(localStorage.getItem(weekKey())||'{}');}catch(e){return{};}}
+function saveWeekly(v){localStorage.setItem(weekKey(),JSON.stringify(v));}
+function toggleWeekly(id,checked){const v=getWeekly();v[id]=checked;saveWeekly(v);renderWeeklyDashboard();}
+async function loadWeeklyDashboard(){
+  let cleared=[]; try{cleared=await gw2Fetch('/account/raids');}catch(e){console.warn('Raid clears unavailable',e);}
+  const data=getWeekly(); RAID_GROUPS.forEach(g=>{if(g.events.length&&g.events.every(e=>cleared.includes(e)))data[g.id]=true;}); saveWeekly(data); renderWeeklyDashboard();
+}
+function renderWeeklyDashboard(){const raid=document.getElementById('raidWeeklyChecks'),strike=document.getElementById('strikeWeeklyChecks'),overall=document.getElementById('weeklyOverall');if(!raid||!strike)return;const v=getWeekly();const row=(x)=>`<div class="weekly-check"><label><input type="checkbox" ${v[x.id]?'checked':''} onchange="toggleWeekly('${x.id}',this.checked)"><span>${x.name}</span></label><span class="weekly-status ${v[x.id]?'done':''}">${v[x.id]?'DONE':'OPEN'}</span></div>`;raid.innerHTML=RAID_GROUPS.map(row).join('');strike.innerHTML=STRIKE_GROUPS.map(row).join('');const all=[...RAID_GROUPS,...STRIKE_GROUPS];const done=all.filter(x=>v[x.id]).length;const pct=Math.round(done/all.length*100);overall.innerHTML=`<div><div class="big">${done} / ${all.length} Complete</div><div style="color:var(--muted);font-size:13px">Your weekly raid and strike checklist</div></div><div style="min-width:220px;flex:1;max-width:420px"><div class="progress-track"><div class="progress-fill" style="width:${pct}%"></div></div><div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--gold-bright);text-align:right">${pct}%</div></div>`;}
+
+
 /* ---------- Orchestration ---------- */
 async function refreshWalletOnly(){
   try{
@@ -1445,6 +1582,9 @@ async function loadAll(){
   try{ await loadProvisioner(); }
   catch(e){ document.getElementById('provisionerOut').innerHTML = `<div class="empty-note">Could not load provisioner data: ${e.message}</div>`; }
   renderGlobalSearch();
+  try{ await loadLegendaryTracker(); }catch(e){ console.error(e); }
+  try{ await loadAccountWideFinder(); }catch(e){ console.error(e); }
+  try{ await loadWeeklyDashboard(); }catch(e){ console.error(e); }
   document.getElementById('statusLine').textContent = `Last refreshed ${new Date().toLocaleTimeString([], {hour:'numeric', minute:'2-digit'})}`;
 }
 
@@ -1506,6 +1646,9 @@ document.getElementById('forgetBtn').addEventListener('click', async () => {
   location.reload();
 });
 
+document.getElementById('addLegendaryGoalBtn')?.addEventListener('click', addLegendaryGoal);
+document.getElementById('accountWideSearch')?.addEventListener('input', renderAccountWideSearch);
+document.getElementById('resetWeeklyBtn')?.addEventListener('click',()=>{localStorage.removeItem(weekKey());renderWeeklyDashboard();});
 document.getElementById('materialsSearch').addEventListener('input', () => renderMaterials());
 document.getElementById('bankSearch').addEventListener('input', () => renderBank());
 
