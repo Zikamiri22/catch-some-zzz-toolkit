@@ -614,6 +614,25 @@
     .crafting-grid{ grid-template-columns:1fr; }
     .wiki-search-row{ flex-direction:column; }
   }
+
+  .resource-hero{background:linear-gradient(135deg,rgba(138,111,223,.18),rgba(201,162,75,.11));border:1px solid var(--hairline);border-radius:14px;padding:24px;margin-bottom:18px;}
+  .resource-hero h2{font-family:'Cinzel',serif;margin:0 0 6px;color:var(--gold-bright);font-size:22px;}
+  .resource-hero p{margin:0;color:var(--muted);line-height:1.5;}
+  .resource-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:22px;}
+  .resource-card{background:var(--bg-panel);border:1px solid var(--hairline);border-radius:10px;padding:16px;text-decoration:none;transition:.15s ease;display:block;}
+  .resource-card:hover{transform:translateY(-2px);border-color:var(--violet);}
+  .resource-card .resource-kicker{font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--violet-glow);margin-bottom:7px;}
+  .resource-card b{display:block;font-family:'Cinzel',serif;color:var(--parchment);font-size:14px;margin-bottom:5px;}
+  .resource-card span{font-size:12px;color:var(--muted);line-height:1.4;}
+  .wing-guide-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;}
+  .wing-guide-card{background:var(--bg-panel);border:1px solid var(--hairline);border-radius:12px;padding:17px;}
+  .wing-guide-card h3{font-family:'Cinzel',serif;color:var(--gold-bright);font-size:16px;margin:0 0 4px;}
+  .wing-subtitle{font-size:12px;color:var(--violet-glow);margin-bottom:10px;}
+  .boss-list{font-size:13px;color:var(--parchment);line-height:1.6;margin-bottom:13px;}
+  .guide-actions{display:flex;flex-wrap:wrap;gap:7px;}
+  .guide-link{font-family:'JetBrains Mono',monospace;font-size:10px;text-decoration:none;color:var(--parchment);border:1px solid var(--hairline);border-radius:999px;padding:7px 10px;background:var(--bg-panel-raised);}
+  .guide-link:hover{border-color:var(--violet-glow);color:var(--gold-bright);}
+  @media (max-width:860px){.resource-grid{grid-template-columns:repeat(2,minmax(0,1fr));}.wing-guide-grid{grid-template-columns:1fr;}}
 @media (max-width: 560px){
     .account-strip{ gap: 14px; }
     .key-row{ flex-direction: column; }
@@ -807,17 +826,17 @@
     box-shadow:0 14px 34px rgba(0,0,0,.18);
   }
   .leader-card{
-    width:min(380px,100%);
-    padding:26px 24px;
+    width:min(330px,100%);
+    padding:23px 20px;
     border-color:rgba(201,162,75,.72);
     position:relative;
   }
   .leader-card::before{
     content:'♛';
     display:block;
-    font-size:28px;
+    font-size:24px;
     color:var(--gold-bright);
-    margin-bottom:6px;
+    margin-bottom:5px;
   }
   .leadership-rank{
     font-family:'JetBrains Mono', monospace;
@@ -830,7 +849,7 @@
   .leader-card .leadership-rank{ color:var(--gold-bright); }
   .leadership-name{
     font-family:'Cinzel', serif;
-    font-size:22px;
+    font-size:20px;
     color:var(--parchment);
     margin-bottom:5px;
   }
@@ -1060,6 +1079,7 @@
       <button class="tab-btn" data-tab="bank">Bank</button>
       <button class="tab-btn" data-tab="provisioner">Provisioner Exchange</button>
       <button class="tab-btn" data-tab="crafting">Crafting Helper</button>
+      <button class="tab-btn" data-tab="raidguides">Raid Guides & Resources</button>
       <button class="tab-btn" data-tab="weekly">Weekly Dashboard</button>
       <button class="tab-btn" data-tab="finder">Item Finder</button>
       <button class="tab-btn" data-tab="legendary">Legendary Progress</button>
@@ -1079,12 +1099,16 @@
 
       <div class="section-title">Quick Tools</div>
       <div class="quick-grid">
-        <div class="quick-card" data-open-tab="leadership"><b>Guild Leadership</b><span>Meet the Guildmaster and High Council.</span></div>
+        <div class="quick-card" data-open-tab="leadership"><b>Guild Leadership</b><span>Meet the Guild Leadership.</span></div>
         <div class="quick-card" data-open-tab="provisioner"><b>Provisioner Route</b><span>Cheapest daily stops and copyable waypoints.</span></div>
         <div class="quick-card" data-open-tab="crafting"><b>Crafting Helper</b><span>GW2Efficiency calculators and Wiki references in one place.</span></div>
         <div class="quick-card" data-open-tab="materials"><b>Material Storage</b><span>Search everything currently stored.</span></div>
         <div class="quick-card" data-open-tab="bank"><b>Bank Search</b><span>Find items without digging through tabs.</span></div>
         <div class="quick-card" id="focusGlobalSearch"><b>Find My Item</b><span>Search bank and materials together.</span></div>
+      </div>
+
+      <div class="quick-grid" style="margin-top:10px;">
+        <div class="quick-card" data-go="raidguides"><b>Raid Guides & Resources</b><span>Written guides, videos, and Snow Crows raid builds.</span></div>
       </div>
 
       <div class="section-title">Find My Item</div>
@@ -1107,12 +1131,12 @@
     <div class="panel" id="panel-leadership">
       <div class="leadership-hero">
         <h2>Catch Some ZZZ Leadership</h2>
-        <p>Meet the Guildmaster and High Council guiding the guild.</p>
+        <p>Meet the Guild Leadership.</p>
       </div>
 
       <div class="org-chart">
         <div class="leader-card" role="button" tabindex="0" data-profile="ziki" aria-label="View Ziki about me profile">
-          <div class="leadership-rank">Guildmaster</div>
+          <div class="leadership-rank">Guildmaster / Raid Commander</div>
           <div class="leadership-name">Ziki</div>
           <div class="leadership-account">Zikamiri.4532</div>
           <div class="leadership-hint">Click to view About Me</div>
@@ -1123,19 +1147,19 @@
 
         <div class="council-grid">
           <div class="council-card" role="button" tabindex="0" data-profile="tav" aria-label="View Tav about me profile">
-            <div class="leadership-rank">High Council</div>
+            <div class="leadership-rank">High Council / Raid Commander</div>
             <div class="leadership-name">Tav</div>
             <div class="leadership-account">Tav.2357</div>
             <div class="leadership-hint">Click to view About Me</div>
           </div>
           <div class="council-card" role="button" tabindex="0" data-profile="lucky" aria-label="View Lucky about me profile">
-            <div class="leadership-rank">High Council</div>
+            <div class="leadership-rank">High Council / Raid Commander</div>
             <div class="leadership-name">Lucky</div>
             <div class="leadership-account">Lucky.2168</div>
             <div class="leadership-hint">Click to view About Me</div>
           </div>
           <div class="council-card" role="button" tabindex="0" data-profile="grumblez" aria-label="View Grumblez about me profile">
-            <div class="leadership-rank">High Council</div>
+            <div class="leadership-rank">High Council / Raid Commander</div>
             <div class="leadership-name">Grumblez</div>
             <div class="leadership-account">Ruffuswm.9136</div>
             <div class="leadership-hint">Click to view About Me</div>
@@ -1244,6 +1268,31 @@
       <div id="accountWideResults"><div class="empty-note">Search for an item to see every loaded location.</div></div>
     </div>
 
+    <div class="panel" id="panel-raidguides">
+      <div class="resource-hero">
+        <h2>Raid Guides & Resources</h2>
+        <p>Use this page as your raid study hall. Grab a current raid build, read the mechanics, or watch a short boss guide before the pull.</p>
+      </div>
+      <div class="section-title">Core Resources</div>
+      <div class="resource-grid">
+        <a class="resource-card" href="https://snowcrows.com/builds/raids" target="_blank" rel="noopener"><div class="resource-kicker">Builds</div><b>Snow Crows</b><span>Raid builds, gear, traits, rotations, and benchmarks.</span></a>
+        <a class="resource-card" href="https://hardstuck.gg/gw2/guides/raids/" target="_blank" rel="noopener"><div class="resource-kicker">Written Guides</div><b>Hardstuck</b><span>Encounter mechanics and strategies organized by raid wing.</span></a>
+        <a class="resource-card" href="https://guildjen.com/gw2-raid-guides/" target="_blank" rel="noopener"><div class="resource-kicker">Written Guides</div><b>GuildJen</b><span>Full wing guides with mechanics, strategies, and encounter notes.</span></a>
+        <a class="resource-card" href="https://www.youtube.com/playlist?list=PLYXBmGBTfXeSAtTZXzdrY33Z0lJ9sVFHW" target="_blank" rel="noopener"><div class="resource-kicker">Video Guides</div><b>Mukluk GTTP</b><span>Short Get To The Point raid videos for quick encounter prep.</span></a>
+      </div>
+      <div class="section-title">Raid Wings</div>
+      <div class="wing-guide-grid">
+        <div class="wing-guide-card"><h3>Wing 1</h3><div class="wing-subtitle">Spirit Vale</div><div class="boss-list">Vale Guardian · Spirit Woods · Gorseval · Sabetha</div><div class="guide-actions"><a class="guide-link" href="https://hardstuck.gg/gw2/guides/w1-spirit-vale/" target="_blank" rel="noopener">Written Guide</a><a class="guide-link" href="https://mukluklabs.com/gw2wing1" target="_blank" rel="noopener">Video Guides</a></div></div>
+        <div class="wing-guide-card"><h3>Wing 2</h3><div class="wing-subtitle">Salvation Pass</div><div class="boss-list">Slothasor · Bandit Trio · Matthias</div><div class="guide-actions"><a class="guide-link" href="https://hardstuck.gg/gw2/guides/w2-salvation-pass/" target="_blank" rel="noopener">Written Guide</a><a class="guide-link" href="https://mukluklabs.com/gw2wing2" target="_blank" rel="noopener">Video Guides</a></div></div>
+        <div class="wing-guide-card"><h3>Wing 3</h3><div class="wing-subtitle">Stronghold of the Faithful</div><div class="boss-list">Escort · Keep Construct · Twisted Castle · Xera</div><div class="guide-actions"><a class="guide-link" href="https://hardstuck.gg/gw2/guides/w3-stronghold-of-the-faithful/" target="_blank" rel="noopener">Written Guide</a><a class="guide-link" href="https://mukluklabs.com/gw2wing3" target="_blank" rel="noopener">Video Guides</a></div></div>
+        <div class="wing-guide-card"><h3>Wing 4</h3><div class="wing-subtitle">Bastion of the Penitent</div><div class="boss-list">Cairn · Mursaat Overseer · Samarog · Deimos</div><div class="guide-actions"><a class="guide-link" href="https://hardstuck.gg/gw2/guides/w4-bastion-of-the-penitent/" target="_blank" rel="noopener">Written Guide</a><a class="guide-link" href="https://mukluklabs.com/gw2wing4" target="_blank" rel="noopener">Video Guides</a></div></div>
+        <div class="wing-guide-card"><h3>Wing 5</h3><div class="wing-subtitle">Hall of Chains</div><div class="boss-list">Soulless Horror · River of Souls · Statues · Dhuum</div><div class="guide-actions"><a class="guide-link" href="https://hardstuck.gg/gw2/guides/w5-hall-of-chains/" target="_blank" rel="noopener">Written Guide</a><a class="guide-link" href="https://mukluklabs.com/gw2wing5" target="_blank" rel="noopener">Video Guides</a></div></div>
+        <div class="wing-guide-card"><h3>Wing 6</h3><div class="wing-subtitle">Mythwright Gambit</div><div class="boss-list">Conjured Amalgamate · Twin Largos · Qadim</div><div class="guide-actions"><a class="guide-link" href="https://hardstuck.gg/gw2/guides/w6-mythwright-gambit/" target="_blank" rel="noopener">Written Guide</a><a class="guide-link" href="https://mukluklabs.com/gw2wing6" target="_blank" rel="noopener">Video Guides</a></div></div>
+        <div class="wing-guide-card"><h3>Wing 7</h3><div class="wing-subtitle">The Key of Ahdashim</div><div class="boss-list">Cardinal Adina · Cardinal Sabir · Qadim the Peerless</div><div class="guide-actions"><a class="guide-link" href="https://hardstuck.gg/gw2/guides/w7-key-of-ahdashim/" target="_blank" rel="noopener">Written Guide</a><a class="guide-link" href="https://mukluklabs.com/gw2wing7" target="_blank" rel="noopener">Video Guides</a></div></div>
+        <div class="wing-guide-card"><h3>Wing 8</h3><div class="wing-subtitle">Mount Balrior</div><div class="boss-list">Decima · Greer · Ura</div><div class="guide-actions"><a class="guide-link" href="https://hardstuck.gg/gw2/guides/w8-mount-balrior/" target="_blank" rel="noopener">Written Guide</a><a class="guide-link" href="https://mukluklabs.com/gw2wing8" target="_blank" rel="noopener">Video Guides</a></div></div>
+      </div>
+    </div>
+
     <div class="panel" id="panel-weekly">
       <div class="feature-hero"><h3>Weekly Raid & Strike Dashboard</h3><p>Keep one simple weekly checklist for raid wings and strike groups. Raid completion is synced from the GW2 API when available, while the checklist remains under your control and resets with a new week.</p></div>
       <div id="weeklyOverall" class="weekly-overall"><div><div class="big">Weekly Progress</div><div style="color:var(--muted);font-size:13px">Loading your checklist…</div></div></div>
@@ -1258,7 +1307,7 @@
     <button id="installAppBtn">Install Toolkit App</button>
     <div class="key-note" style="margin-top:10px;">Optional: install this site like an app on supported browsers.</div>
   </div>
-<div class="version-stamp">Catch Some ZZZ Guild Toolkit • Web Edition • v2.5
+<div class="version-stamp">Catch Some ZZZ Guild Toolkit • Web Edition • v2.7
   </div>
 <script>
 const CLEAN_SHARE_SOURCE = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
@@ -1828,13 +1877,13 @@ const LEADERSHIP_PROFILES = {
   ziki: {
     name: "Ziki",
     account: "Zikamiri.4532",
-    rank: "Guildmaster",
+    rank: "Guildmaster / Raid Commander",
     bio: "Hi! I am ⭐Ziki [Zikamiri.4532], Leader of Catch Some ZZZ [Zzzz]. I live for fashion wars, raiding, fractals, strikes, and all the open world chaos Tyria throws my way. Always chasing the next legendary, whether it’s armor, weapons, or just the flex. Known whale status! If it sparkles in the gem store, I probably own it. Building community, grinding content, and making sure the guild keeps catching those Zzzz together."
   },
   lucky: {
     name: "Lucky",
     account: "Lucky.2168",
-    rank: "High Council / Raid Leader",
+    rank: "High Council / Raid Commander",
     bio: `Hey hey! I am known as Lucky in game. I am a High Council Member and Raid Leader of the guild. If I am not playing GW2, I most likely am playing Marvel Rivals or Pokopia. I love Pokémon! I also love Squishmallows and Monster High dolls. I have a huge collection of both! I love tattoos and have a good amount of them too, but not enough!!! I am also starting some online classes so I can become a tattoo artist.
 
 I love my fur babies. I have two cats who are both named after GW2 characters, a Corgi, and two guinea piggies. I love all things spooky and cute. 🙂 I also love metal music! 😄 Alestorm and Mortiis are my favorite bands.`
@@ -1842,13 +1891,13 @@ I love my fur babies. I have two cats who are both named after GW2 characters, a
   tav: {
     name: "Tav",
     account: "Tav.2357",
-    rank: "High Council",
+    rank: "High Council / Raid Commander",
     bio: "About Me coming soon."
   },
   grumblez: {
     name: "Grumblez",
     account: "Ruffuswm.9136",
-    rank: "High Council",
+    rank: "High Council / Raid Commander",
     bio: "About Me coming soon."
   }
 };

@@ -14,9 +14,13 @@ GitHub Pages ready static web app.
 The toolkit is client-side. API keys are not sent to the repository owner or guild. Account API calls go from the member's browser to the official Guild Wars 2 API.
 
 
-## v2.5
+## v2.7
 Added a public Guild Leadership org chart featuring the Guildmaster and High Council.
 
 
-## v2.5
+## v2.7
 Leadership cards are clickable and open About Me profiles. Ziki and Lucky bios are included; Tav and Grumblez are ready for future bios.
+
+
+## v2.7
+Added Raid Guides & Resources with Snow Crows raid builds, written raid guides, Mukluk video guides, and per-wing resource cards.
