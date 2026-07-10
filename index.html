@@ -770,6 +770,231 @@
   .weekly-overall .big{font-family:'Cinzel',serif;font-size:24px;color:var(--gold-bright)}
   @media(max-width:620px){.finder-result{grid-template-columns:1fr}.finder-total{text-align:left}.goal-toolbar select{min-width:100%}}
 
+
+
+  /* ---- Guild Leadership ---- */
+  .leadership-hero{
+    text-align:center;
+    background:linear-gradient(145deg, rgba(201,162,75,0.12), rgba(138,111,223,0.10));
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 22px;
+    margin-bottom:26px;
+  }
+  .leadership-hero h2{
+    font-family:'Cinzel', serif;
+    color:var(--gold-bright);
+    margin:0 0 8px;
+    letter-spacing:.06em;
+  }
+  .leadership-hero p{
+    margin:0;
+    color:var(--muted);
+    font-size:14px;
+  }
+  .org-chart{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding:12px 0 8px;
+  }
+  .leader-card,
+  .council-card{
+    background:linear-gradient(155deg, var(--bg-panel-raised), var(--bg-panel));
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    text-align:center;
+    box-shadow:0 14px 34px rgba(0,0,0,.18);
+  }
+  .leader-card{
+    width:min(380px,100%);
+    padding:26px 24px;
+    border-color:rgba(201,162,75,.72);
+    position:relative;
+  }
+  .leader-card::before{
+    content:'♛';
+    display:block;
+    font-size:28px;
+    color:var(--gold-bright);
+    margin-bottom:6px;
+  }
+  .leadership-rank{
+    font-family:'JetBrains Mono', monospace;
+    font-size:10px;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--violet-glow);
+    margin-bottom:8px;
+  }
+  .leader-card .leadership-rank{ color:var(--gold-bright); }
+  .leadership-name{
+    font-family:'Cinzel', serif;
+    font-size:22px;
+    color:var(--parchment);
+    margin-bottom:5px;
+  }
+  .leadership-account{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    color:var(--muted);
+  }
+  .org-line-vertical{
+    width:1px;
+    height:36px;
+    background:linear-gradient(var(--gold), var(--violet));
+  }
+  .council-label{
+    font-family:'Cinzel', serif;
+    color:var(--violet-glow);
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    font-size:13px;
+    margin:0 0 18px;
+  }
+  .council-grid{
+    width:100%;
+    display:grid;
+    grid-template-columns:repeat(3, minmax(0,1fr));
+    gap:16px;
+    position:relative;
+  }
+  .council-grid::before{
+    content:'';
+    position:absolute;
+    top:-19px;
+    left:16.67%;
+    right:16.67%;
+    height:1px;
+    background:var(--hairline);
+  }
+  .council-card{
+    padding:22px 16px;
+    position:relative;
+  }
+  .council-card::before{
+    content:'';
+    position:absolute;
+    width:1px;
+    height:20px;
+    background:var(--hairline);
+    top:-20px;
+    left:50%;
+  }
+  .council-card .leadership-name{
+    font-size:18px;
+  }
+  @media(max-width:760px){
+    .council-grid{grid-template-columns:1fr;max-width:420px;gap:12px;}
+    .council-grid::before{display:none;}
+    .council-card::before{display:none;}
+    .org-line-vertical{height:24px;}
+  }
+
+
+
+  /* ---- Leadership Profiles ---- */
+  .leader-card,
+  .council-card{
+    cursor:pointer;
+    transition:transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+  }
+  .leader-card:hover,
+  .council-card:hover,
+  .leader-card:focus-visible,
+  .council-card:focus-visible{
+    transform:translateY(-3px);
+    border-color:var(--gold);
+    box-shadow:0 16px 38px rgba(0,0,0,.28), 0 0 0 1px rgba(201,162,75,.18);
+    outline:none;
+  }
+  .leadership-hint{
+    margin-top:10px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:10px;
+    color:var(--muted);
+    letter-spacing:.04em;
+  }
+  .profile-modal{
+    position:fixed;
+    inset:0;
+    z-index:1000;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:22px;
+    background:rgba(7,5,12,.78);
+    backdrop-filter:blur(8px);
+  }
+  .profile-modal.open{display:flex;}
+  .profile-dialog{
+    width:min(660px,100%);
+    max-height:min(82vh,760px);
+    overflow:auto;
+    background:linear-gradient(155deg, var(--bg-panel-raised), var(--bg-panel));
+    border:1px solid rgba(201,162,75,.58);
+    border-radius:18px;
+    padding:28px;
+    box-shadow:0 28px 80px rgba(0,0,0,.55);
+    position:relative;
+  }
+  .profile-close{
+    position:absolute;
+    top:14px;
+    right:14px;
+    width:38px;
+    height:38px;
+    padding:0;
+    border-radius:50%;
+    background:transparent;
+    border:1px solid var(--hairline);
+    color:var(--parchment);
+    font-family:'JetBrains Mono', monospace;
+    font-size:18px;
+  }
+  .profile-close:hover{border-color:var(--gold);box-shadow:none;}
+  .profile-rank{
+    font-family:'JetBrains Mono', monospace;
+    font-size:10px;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--violet-glow);
+    margin-bottom:8px;
+  }
+  .profile-name{
+    font-family:'Cinzel', serif;
+    font-size:clamp(26px,5vw,36px);
+    color:var(--gold-bright);
+    margin:0 44px 4px 0;
+  }
+  .profile-account{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    color:var(--muted);
+    margin-bottom:20px;
+  }
+  .profile-about-label{
+    font-family:'Cinzel', serif;
+    font-size:12px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--violet-glow);
+    margin-bottom:10px;
+  }
+  .profile-bio{
+    font-size:15px;
+    line-height:1.72;
+    color:var(--parchment);
+    white-space:pre-line;
+  }
+  .profile-placeholder{
+    color:var(--muted);
+    font-style:italic;
+  }
+  @media(max-width:620px){
+    .profile-dialog{padding:24px 20px;}
+  }
+
 </style>
 
 <link rel="manifest" href="manifest.webmanifest">
@@ -829,6 +1054,7 @@
 
     <div class="tabs">
       <button class="tab-btn active" data-tab="overview">Overview</button>
+      <button class="tab-btn" data-tab="leadership">Guild Leadership</button>
       <button class="tab-btn" data-tab="wallet">Wallet</button>
       <button class="tab-btn" data-tab="materials">Material Storage</button>
       <button class="tab-btn" data-tab="bank">Bank</button>
@@ -853,6 +1079,7 @@
 
       <div class="section-title">Quick Tools</div>
       <div class="quick-grid">
+        <div class="quick-card" data-open-tab="leadership"><b>Guild Leadership</b><span>Meet the Guildmaster and High Council.</span></div>
         <div class="quick-card" data-open-tab="provisioner"><b>Provisioner Route</b><span>Cheapest daily stops and copyable waypoints.</span></div>
         <div class="quick-card" data-open-tab="crafting"><b>Crafting Helper</b><span>GW2Efficiency calculators and Wiki references in one place.</span></div>
         <div class="quick-card" data-open-tab="materials"><b>Material Storage</b><span>Search everything currently stored.</span></div>
@@ -873,6 +1100,58 @@
         <div class="privacy-title">API Key Check</div>
         <div style="font-size:12px;color:var(--muted)">The toolkit checks the permissions on your key and shows what is available.</div>
         <div class="permission-list" id="permissionList"><span class="perm">Checking…</span></div>
+      </div>
+    </div>
+
+
+    <div class="panel" id="panel-leadership">
+      <div class="leadership-hero">
+        <h2>Catch Some ZZZ Leadership</h2>
+        <p>Meet the Guildmaster and High Council guiding the guild.</p>
+      </div>
+
+      <div class="org-chart">
+        <div class="leader-card" role="button" tabindex="0" data-profile="ziki" aria-label="View Ziki about me profile">
+          <div class="leadership-rank">Guildmaster</div>
+          <div class="leadership-name">Ziki</div>
+          <div class="leadership-account">Zikamiri.4532</div>
+          <div class="leadership-hint">Click to view About Me</div>
+        </div>
+
+        <div class="org-line-vertical"></div>
+        <div class="council-label">The High Council</div>
+
+        <div class="council-grid">
+          <div class="council-card" role="button" tabindex="0" data-profile="tav" aria-label="View Tav about me profile">
+            <div class="leadership-rank">High Council</div>
+            <div class="leadership-name">Tav</div>
+            <div class="leadership-account">Tav.2357</div>
+            <div class="leadership-hint">Click to view About Me</div>
+          </div>
+          <div class="council-card" role="button" tabindex="0" data-profile="lucky" aria-label="View Lucky about me profile">
+            <div class="leadership-rank">High Council</div>
+            <div class="leadership-name">Lucky</div>
+            <div class="leadership-account">Lucky.2168</div>
+            <div class="leadership-hint">Click to view About Me</div>
+          </div>
+          <div class="council-card" role="button" tabindex="0" data-profile="grumblez" aria-label="View Grumblez about me profile">
+            <div class="leadership-rank">High Council</div>
+            <div class="leadership-name">Grumblez</div>
+            <div class="leadership-account">Ruffuswm.9136</div>
+            <div class="leadership-hint">Click to view About Me</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="profile-modal" id="leadershipProfileModal" aria-hidden="true">
+      <div class="profile-dialog" role="dialog" aria-modal="true" aria-labelledby="profileName">
+        <button class="profile-close" id="profileCloseBtn" type="button" aria-label="Close profile">×</button>
+        <div class="profile-rank" id="profileRank"></div>
+        <h3 class="profile-name" id="profileName"></h3>
+        <div class="profile-account" id="profileAccount"></div>
+        <div class="profile-about-label">About Me</div>
+        <div class="profile-bio" id="profileBio"></div>
       </div>
     </div>
 
@@ -979,7 +1258,7 @@
     <button id="installAppBtn">Install Toolkit App</button>
     <div class="key-note" style="margin-top:10px;">Optional: install this site like an app on supported browsers.</div>
   </div>
-<div class="version-stamp">Catch Some ZZZ Guild Toolkit • Web Edition • v2.3
+<div class="version-stamp">Catch Some ZZZ Guild Toolkit • Web Edition • v2.5
   </div>
 <script>
 const CLEAN_SHARE_SOURCE = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
@@ -1541,6 +1820,81 @@ async function loadWeeklyDashboard(){
   const data=getWeekly(); RAID_GROUPS.forEach(g=>{if(g.events.length&&g.events.every(e=>cleared.includes(e)))data[g.id]=true;}); saveWeekly(data); renderWeeklyDashboard();
 }
 function renderWeeklyDashboard(){const raid=document.getElementById('raidWeeklyChecks'),strike=document.getElementById('strikeWeeklyChecks'),overall=document.getElementById('weeklyOverall');if(!raid||!strike)return;const v=getWeekly();const row=(x)=>`<div class="weekly-check"><label><input type="checkbox" ${v[x.id]?'checked':''} onchange="toggleWeekly('${x.id}',this.checked)"><span>${x.name}</span></label><span class="weekly-status ${v[x.id]?'done':''}">${v[x.id]?'DONE':'OPEN'}</span></div>`;raid.innerHTML=RAID_GROUPS.map(row).join('');strike.innerHTML=STRIKE_GROUPS.map(row).join('');const all=[...RAID_GROUPS,...STRIKE_GROUPS];const done=all.filter(x=>v[x.id]).length;const pct=Math.round(done/all.length*100);overall.innerHTML=`<div><div class="big">${done} / ${all.length} Complete</div><div style="color:var(--muted);font-size:13px">Your weekly raid and strike checklist</div></div><div style="min-width:220px;flex:1;max-width:420px"><div class="progress-track"><div class="progress-fill" style="width:${pct}%"></div></div><div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--gold-bright);text-align:right">${pct}%</div></div>`;}
+
+
+
+
+const LEADERSHIP_PROFILES = {
+  ziki: {
+    name: "Ziki",
+    account: "Zikamiri.4532",
+    rank: "Guildmaster",
+    bio: "Hi! I am ⭐Ziki [Zikamiri.4532], Leader of Catch Some ZZZ [Zzzz]. I live for fashion wars, raiding, fractals, strikes, and all the open world chaos Tyria throws my way. Always chasing the next legendary, whether it’s armor, weapons, or just the flex. Known whale status! If it sparkles in the gem store, I probably own it. Building community, grinding content, and making sure the guild keeps catching those Zzzz together."
+  },
+  lucky: {
+    name: "Lucky",
+    account: "Lucky.2168",
+    rank: "High Council / Raid Leader",
+    bio: `Hey hey! I am known as Lucky in game. I am a High Council Member and Raid Leader of the guild. If I am not playing GW2, I most likely am playing Marvel Rivals or Pokopia. I love Pokémon! I also love Squishmallows and Monster High dolls. I have a huge collection of both! I love tattoos and have a good amount of them too, but not enough!!! I am also starting some online classes so I can become a tattoo artist.
+
+I love my fur babies. I have two cats who are both named after GW2 characters, a Corgi, and two guinea piggies. I love all things spooky and cute. 🙂 I also love metal music! 😄 Alestorm and Mortiis are my favorite bands.`
+  },
+  tav: {
+    name: "Tav",
+    account: "Tav.2357",
+    rank: "High Council",
+    bio: "About Me coming soon."
+  },
+  grumblez: {
+    name: "Grumblez",
+    account: "Ruffuswm.9136",
+    rank: "High Council",
+    bio: "About Me coming soon."
+  }
+};
+
+function openLeadershipProfile(profileKey){
+  const profile = LEADERSHIP_PROFILES[profileKey];
+  if(!profile) return;
+  const modal = document.getElementById('leadershipProfileModal');
+  document.getElementById('profileRank').textContent = profile.rank;
+  document.getElementById('profileName').textContent = profile.name;
+  document.getElementById('profileAccount').textContent = profile.account;
+  const bio = document.getElementById('profileBio');
+  bio.textContent = profile.bio;
+  bio.classList.toggle('profile-placeholder', profile.bio === 'About Me coming soon.');
+  modal.classList.add('open');
+  modal.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+  document.getElementById('profileCloseBtn').focus();
+}
+
+function closeLeadershipProfile(){
+  const modal = document.getElementById('leadershipProfileModal');
+  modal.classList.remove('open');
+  modal.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+
+document.querySelectorAll('[data-profile]').forEach(card => {
+  card.addEventListener('click', () => openLeadershipProfile(card.dataset.profile));
+  card.addEventListener('keydown', e => {
+    if(e.key === 'Enter' || e.key === ' '){
+      e.preventDefault();
+      openLeadershipProfile(card.dataset.profile);
+    }
+  });
+});
+
+document.getElementById('profileCloseBtn').addEventListener('click', closeLeadershipProfile);
+document.getElementById('leadershipProfileModal').addEventListener('click', e => {
+  if(e.target.id === 'leadershipProfileModal') closeLeadershipProfile();
+});
+document.addEventListener('keydown', e => {
+  if(e.key === 'Escape' && document.getElementById('leadershipProfileModal').classList.contains('open')){
+    closeLeadershipProfile();
+  }
+});
 
 
 /* ---------- Orchestration ---------- */

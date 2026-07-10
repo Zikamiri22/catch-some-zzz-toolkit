@@ -12,3 +12,11 @@ GitHub Pages ready static web app.
 6. Wait for GitHub Pages to publish the site and use the URL shown in Pages settings.
 
 The toolkit is client-side. API keys are not sent to the repository owner or guild. Account API calls go from the member's browser to the official Guild Wars 2 API.
+
+
+## v2.5
+Added a public Guild Leadership org chart featuring the Guildmaster and High Council.
+
+
+## v2.5
+Leadership cards are clickable and open About Me profiles. Ziki and Lucky bios are included; Tav and Grumblez are ready for future bios.
