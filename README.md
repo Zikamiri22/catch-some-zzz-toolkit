@@ -1,4 +1,4 @@
-# Catch Some ZZZ Guild Toolkit v3.6
+# Catch Some ZZZ Guild Toolkit v3.8
 
 ## Release focus
 
@@ -23,3 +23,16 @@ This release corrects Fractal daily completion tracking and continues the respon
 ### Privacy
 
 All API calls remain client side. Saved API keys and local tracking remain in the user's browser only.
+
+
+## v3.8 Fractal sync reliability fix
+
+- Loads the public daily Fractal rotation independently of account permissions.
+- Separates rotation availability from account completion availability.
+- Shows active T4 and Recommended fractals even when the connected API key lacks Progression permission.
+- Prevents unavailable account progress from being displayed as false 0/3 completion.
+- Adds clearer permission and sync status messaging.
+
+
+## v3.8 Dashboard Navigation Update
+Dashboard widgets now act as direct navigation cards. Clicking or keyboard activating a widget opens its matching app section. Interactive controls inside widgets keep their existing behavior and do not trigger card navigation. Quick Tools remains a multi-action widget.
