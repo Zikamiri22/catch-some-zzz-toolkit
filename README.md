@@ -1,23 +1,25 @@
-# Catch Some ZZZ Guild Toolkit v3.5
+# Catch Some ZZZ Guild Toolkit v3.6
 
-GitHub Pages ready web package.
+## Release focus
 
-## v3.5 changes
+This release corrects Fractal daily completion tracking and continues the responsive layout cleanup.
 
-* Adds multi account GW2 API key profiles.
-* Members can save multiple accounts in this browser and switch between them from a dropdown in Account Status.
-* Add Account opens the existing guild branded API key form with saving enabled by default.
-* Remove Saved Account removes the selected local profile.
-* Switching accounts clears loaded account data before the new account refreshes, preventing mixed wallet, bank, inventory, legendary, and completion data.
-* Raid and strike manual weekly fallback state is now account scoped using a v2 storage key.
-* Fractal daily and long term manual fallback state is now account scoped using v2 storage keys.
-* Existing dashboard customization, Event Timer, Wiki linking, and API completion sync remain intact.
-* Service worker cache updated to v3.5.
+### Fractals
 
-## Multi account storage
+* Loads the current Daily Fractal achievement set from the GW2 API.
+* Shows only today's Daily Tier 4 and Daily Recommended fractals.
+* Compares those achievement IDs against the connected account's achievement progress.
+* Separates Tier 4 and Recommended progress into clear 0/3 style summaries.
+* Removes unrelated historic Fractal achievements from the daily completion screen.
+* Keeps long term Fractal goals as account scoped personal checklists.
+* Keeps Wiki links on all displayed fractal achievement names.
 
-Saved profiles use `cszzz-api-accounts-v1`. The selected profile name uses `cszzz-active-api-account-v1`. API keys remain local to the member's browser and are sent only from that browser to the official Guild Wars 2 API.
+### Layout
 
-## Deployment
+* Reworked the Fractal page into two focused responsive completion cards.
+* Improved compact status pills, spacing, and mobile readability.
+* Updated dashboard Fractal widget to show Tier 4 and Recommended completion separately.
 
-Upload the contents of this folder to the repository root and commit the changes. Do not upload the ZIP itself or nest these files under another folder.
+### Privacy
+
+All API calls remain client side. Saved API keys and local tracking remain in the user's browser only.
