@@ -1,34 +1,22 @@
-# Catch Some ZZZ Guild Toolkit v3.2
+# Catch Some ZZZ Guild Toolkit v3.5
 
 GitHub Pages ready web package.
 
-## v3.2 changes
+## v3.5 changes
 
-* Expanded Catch Some ZZZ guild identity throughout the application
-* Larger official guild logo treatment in the sidebar
-* Branded dashboard hero with the Catch Some ZZZ mascot and guild copy
-* Branded API connection experience
-* Subtle guild logo marks across section headers
-* Guild branded footer and leadership treatment
-* Universal GW2 Wiki link helper for account data
-* Wallet currency names now link to the GW2 Wiki
-* Favorite currency dashboard entries now link to the GW2 Wiki
-* Material Storage item names now link to the GW2 Wiki
-* Bank item names now link to the GW2 Wiki
-* Item Finder results and dashboard finder summaries now link to the GW2 Wiki
-* Legendary Armory entries now link to the GW2 Wiki
-* Legendary material and currency tracker entries now link to the GW2 Wiki
-* Dashboard account coin label links to the GW2 Wiki
-* Preserves the customizable dashboard and grouped navigation introduced in v3.1
-* Service worker cache updated to v3.2
+* Adds multi account GW2 API key profiles.
+* Members can save multiple accounts in this browser and switch between them from a dropdown in Account Status.
+* Add Account opens the existing guild branded API key form with saving enabled by default.
+* Remove Saved Account removes the selected local profile.
+* Switching accounts clears loaded account data before the new account refreshes, preventing mixed wallet, bank, inventory, legendary, and completion data.
+* Raid and strike manual weekly fallback state is now account scoped using a v2 storage key.
+* Fractal daily and long term manual fallback state is now account scoped using v2 storage keys.
+* Existing dashboard customization, Event Timer, Wiki linking, and API completion sync remain intact.
+* Service worker cache updated to v3.5.
 
-## Wiki linking standard
+## Multi account storage
 
-Displayed GW2 items, materials, and currencies use the shared Wiki link helper and open the Guild Wars 2 Wiki in a new tab. New features should use the same helper instead of hardcoding individual Wiki URLs.
-
-## Privacy model
-
-Each user supplies their own GW2 API key. The app calls the official GW2 API directly from the browser. No project backend receives account data. Optional remembered keys and all dashboard settings remain in browser storage.
+Saved profiles use `cszzz-api-accounts-v1`. The selected profile name uses `cszzz-active-api-account-v1`. API keys remain local to the member's browser and are sent only from that browser to the official Guild Wars 2 API.
 
 ## Deployment
 
