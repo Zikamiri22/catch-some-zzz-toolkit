@@ -1,4 +1,4 @@
-# Catch Some ZZZ Guild Toolkit v3.9
+# Catch Some ZZZ Guild Toolkit v3.10
 
 ## Release focus
 
@@ -24,6 +24,14 @@ This release corrects Fractal daily completion tracking and continues the respon
 
 All API calls remain client side. Saved API keys and local tracking remain in the user's browser only.
 
+
+
+## v3.10 Credits and disclaimer
+
+- Added a compact linked source credit line for GW2 Wiki, Snow Crows, Mukluk, Hardstuck, GuildJen, and GW2Efficiency.
+- Added a concise unofficial fan project disclaimer in the global footer.
+- Kept attribution visible without adding a large credits page or cluttering tool layouts.
+- Updated service-worker cache to `cszzz-toolkit-v3.10`.
 
 ## v3.9 Fractal Daily Source Fix
 
