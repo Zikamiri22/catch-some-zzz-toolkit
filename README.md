@@ -1,4 +1,4 @@
-# Catch Some ZZZ Guild Toolkit v3.8
+# Catch Some ZZZ Guild Toolkit v3.9
 
 ## Release focus
 
@@ -24,6 +24,14 @@ This release corrects Fractal daily completion tracking and continues the respon
 
 All API calls remain client side. Saved API keys and local tracking remain in the user's browser only.
 
+
+## v3.9 Fractal Daily Source Fix
+
+- Replaced the disabled `/v2/achievements/daily` request with `/v2/achievements/categories/88?v=latest`.
+- Today's Tier 4 and Recommended Fractals now come from the live Daily Fractals achievement category.
+- Account completion still syncs separately through `/v2/account/achievements` when the key has Progression permission.
+- The rotation can display even when completion sync is unavailable.
+- Updated service-worker cache to `cszzz-toolkit-v3.9`.
 
 ## v3.8 Fractal sync reliability fix
 

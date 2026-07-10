@@ -44,7 +44,7 @@ button,input,select{font:inherit}a{color:var(--cyan)}.app{display:grid;grid-temp
 <body>
 <div class="app">
 <aside class="sidebar" id="sidebar">
-  <div class="brand"><img src="icons/icon-192.png" alt="Catch Some ZZZ guild logo"><div><strong>CATCH SOME ZZZ</strong><small>Guild Toolkit · v3.8</small><span class="brand-tagline">Built for the guild</span></div></div>
+  <div class="brand"><img src="icons/icon-192.png" alt="Catch Some ZZZ guild logo"><div><strong>CATCH SOME ZZZ</strong><small>Guild Toolkit · v3.9</small><span class="brand-tagline">Built for the guild</span></div></div>
   <div class="nav-group"><div class="nav-label">HOME</div><button class="nav-btn active" data-panel="overview"><span class="nav-icon">⌂</span>My Dashboard</button></div>
   <div class="nav-group"><div class="nav-label">ACCOUNT</div>
     <button class="nav-btn" data-panel="wallet"><span class="nav-icon">◈</span>Wallet</button>
@@ -115,7 +115,7 @@ button,input,select{font:inherit}a{color:var(--cyan)}.app{display:grid;grid-temp
 
 <section class="panel" id="panel-leadership"><div class="page-title"><div><div class="eyebrow">GUILD</div><h1>Catch Some ZZZ Leadership</h1><p>Meet the Guild Leadership.</p><div class="guild-chip"><img src="icons/icon-192.png" alt=""><span>Catch Some ZZZ [Zzzz]</span></div></div></div><div class="leadership"><div class="leader-main"><div class="card leader-card" data-leader="ziki"><div class="role">Guildmaster / Raid Commander</div><h3>Ziki</h3><div class="muted">Zikamiri.4532</div><p class="muted">Click to view About Me</p></div></div><div class="leader-row"><div class="card leader-card" data-leader="tav"><div class="role">High Council / Raid Commander</div><h3>Tav</h3><div class="muted">Tav.2357</div><p class="muted">Click to view About Me</p></div><div class="card leader-card" data-leader="lucky"><div class="role">High Council / Raid Commander</div><h3>Lucky</h3><div class="muted">Lucky.2168</div><p class="muted">Click to view About Me</p></div><div class="card leader-card" data-leader="grumblez"><div class="role">High Council / Raid Commander</div><h3>Grumblez</h3><div class="muted">Ruffuswm.9136</div><p class="muted">Click to view About Me</p></div></div></div></section>
 </div>
-<div class="footer"><img src="icons/icon-192.png" alt=""><span>Catch Some ZZZ Guild Toolkit · Web Edition · v3.8</span></div>
+<div class="footer"><img src="icons/icon-192.png" alt=""><span>Catch Some ZZZ Guild Toolkit · Web Edition · v3.9</span></div>
 </main></div>
 
 <div class="modal-backdrop" id="authModal"><div class="modal"><div class="modal-head"><div class="eyebrow">WELCOME TO THE GUILD TOOLKIT</div><button class="mini-btn" data-close="authModal">✕</button></div><div class="auth-brand"><img src="icons/icon-192.png" alt="Catch Some ZZZ guild logo"><div><div class="eyebrow">CATCH SOME ZZZ</div><h2>Add or Connect a GW2 Account</h2><p class="muted">Add an account with its own read only API key, then swap between saved accounts anytime.</p></div></div><p class="muted">Your key is used only from this browser to call the official Guild Wars 2 API. It is never sent to Ziki or Catch Some ZZZ.</p><div class="auth-card"><div><input class="input" id="apiKeyInput" type="password" placeholder="Paste read only GW2 API key"><label class="auth-note"><input type="checkbox" id="rememberKey"> Save this account on this device</label></div><button class="btn primary" id="unlockBtn">Add Account</button></div><div class="auth-note">Recommended permissions: account, inventories, characters, progression, wallet.</div></div></div>
@@ -214,12 +214,14 @@ async function loadCompletionData(){
     state.completionSync.raids=true;
   }catch(e){console.warn('Raid sync unavailable',e)}})());
 
-  // The current public fractal rotation does not require an API-key permission.
-  // Load it independently so members can always see today's T4 and Recommended list.
+  // The legacy /achievements/daily endpoint is disabled. Category 88 is the live
+  // Daily Fractals source and exposes today's achievement IDs, plus tomorrow when v=latest.
+  // Load the rotation independently from account completion so the schedule still renders
+  // even when an API key lacks the Progression permission.
   tasks.push((async()=>{try{
-    const daily=await publicGW2('/achievements/daily');
-    const dailyFractals=Array.isArray(daily?.fractals)?daily.fractals:[];
-    dailyIds=[...new Set(dailyFractals.map(x=>x.id).filter(Boolean))];
+    const category=await publicGW2('/achievements/categories/88?v=latest');
+    const todayFractals=Array.isArray(category?.achievements)?category.achievements:[];
+    dailyIds=[...new Set(todayFractals.map(x=>x.id).filter(Boolean))];
     for(let i=0;i<dailyIds.length;i+=200){
       const rows=await publicGW2(`/achievements?ids=${dailyIds.slice(i,i+200).join(',')}`);
       rows.forEach(a=>state.achievementDetails[a.id]=a);
@@ -227,7 +229,7 @@ async function loadCompletionData(){
     state.fractalRotationLoaded=dailyIds.length>0;
   }catch(e){
     console.warn('Fractal daily rotation unavailable',e);
-    state.fractalSyncMessage='The public GW2 daily rotation could not be loaded.';
+    state.fractalSyncMessage='Today’s Fractal rotation could not be loaded from the GW2 API.';
   }})());
 
   if(state.tokenInfo?.permissions?.includes('progression')){
