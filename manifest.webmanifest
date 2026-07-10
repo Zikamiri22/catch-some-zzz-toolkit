@@ -1,22 +1,12 @@
 {
-  "name": "Catch Some ZZZ Guild Toolkit v3.0",
-  "short_name": "ZZZ Toolkit",
-  "description": "Guild Wars 2 account, storage, provisioner, and crafting utilities for Catch Some ZZZ and friends.",
-  "start_url": "./",
-  "scope": "./",
-  "display": "standalone",
-  "background_color": "#120f1c",
-  "theme_color": "#120f1c",
-  "icons": [
-    {
-      "src": "icons/icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "icons/icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    }
+  "name":"Catch Some ZZZ Guild Toolkit",
+  "short_name":"Catch Some ZZZ",
+  "start_url":"./",
+  "display":"standalone",
+  "background_color":"#191320",
+  "theme_color":"#191320",
+  "icons":[
+    {"src":"icons/icon-192.png","sizes":"192x192","type":"image/png"},
+    {"src":"icons/icon-512.png","sizes":"512x512","type":"image/png"}
   ]
 }
