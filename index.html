@@ -1014,6 +1014,56 @@
     .profile-dialog{padding:24px 20px;}
   }
 
+
+
+  /* ---- v3.0 Member Tools ---- */
+  .tool-hero{
+    background: linear-gradient(135deg, rgba(138,111,223,.16), rgba(201,162,75,.08));
+    border:1px solid var(--hairline); border-radius:12px; padding:24px; margin-bottom:20px;
+  }
+  .tool-hero h2,.tool-hero h3{font-family:'Cinzel',serif;color:var(--gold-bright);margin:0 0 8px}
+  .tool-hero p{color:var(--muted);margin:0;line-height:1.6}
+  .mini-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+  .utility-card{background:var(--bg-panel);border:1px solid var(--hairline);border-radius:10px;padding:16px}
+  .utility-card h3{font-family:'Cinzel',serif;font-size:15px;color:var(--gold-bright);margin:0 0 8px}
+  .utility-card p{color:var(--muted);font-size:13px;line-height:1.5;margin:0}
+  .goal-form{display:grid;grid-template-columns:minmax(220px,2fr) minmax(90px,.7fr) minmax(90px,.7fr) minmax(100px,.8fr) auto;gap:8px;align-items:center;margin-bottom:16px}
+  .goal-form input,.goal-form select,.routine-add input,.routine-add select{width:100%;background:var(--bg);border:1px solid var(--hairline);border-radius:6px;padding:11px 12px;color:var(--parchment);font-family:'Spectral',serif}
+  .member-goal{background:var(--bg-panel);border:1px solid var(--hairline);border-radius:10px;padding:16px;margin-bottom:10px}
+  .member-goal-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:10px}
+  .member-goal-title{font-family:'Cinzel',serif;color:var(--parchment);font-size:15px}
+  .member-goal-meta{font-family:'JetBrains Mono',monospace;color:var(--gold-bright);font-size:12px;margin-top:4px}
+  .goal-actions{display:flex;gap:7px;flex-wrap:wrap}
+  .tiny-btn{background:transparent;border:1px solid var(--hairline);color:var(--muted);padding:6px 9px;font-family:'JetBrains Mono',monospace;font-size:10px;border-radius:999px}
+  .tiny-btn:hover{border-color:var(--violet);color:var(--parchment);box-shadow:none}
+  .routine-columns{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .routine-card{background:var(--bg-panel);border:1px solid var(--hairline);border-radius:10px;padding:16px}
+  .routine-card h3{font-family:'Cinzel',serif;color:var(--gold-bright);margin:0 0 12px}
+  .routine-item{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px solid rgba(54,46,84,.7)}
+  .routine-item:last-child{border-bottom:0}.routine-item label{display:flex;align-items:center;gap:10px;cursor:pointer;flex:1}
+  .routine-item input{accent-color:var(--gold)}
+  .routine-add{display:grid;grid-template-columns:1fr 120px auto;gap:8px;margin-top:14px}
+  .routine-progress{margin:14px 0 18px}
+  .fractal-summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-bottom:18px}
+  .fractal-stat{background:var(--bg-panel);border:1px solid var(--hairline);border-radius:10px;padding:16px}
+  .fractal-stat .k{font-family:'JetBrains Mono',monospace;color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.08em}
+  .fractal-stat .v{font-family:'Cinzel',serif;color:var(--gold-bright);font-size:24px;margin-top:8px}
+  .fractal-check-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:8px}
+  .fractal-check{background:var(--bg-panel);border:1px solid var(--hairline);border-radius:8px;padding:11px 12px;display:flex;align-items:center;gap:9px}
+  .fractal-check input{accent-color:var(--gold)}
+  .material-track-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px}
+  .material-track-card{background:var(--bg-panel);border:1px solid var(--hairline);border-radius:10px;padding:14px;display:flex;align-items:center;gap:12px}
+  .material-track-card img{width:38px;height:38px;border-radius:6px;background:var(--bg-panel-raised)}
+  .material-track-card .name{font-size:13px}.material-track-card .count{font-family:'JetBrains Mono',monospace;color:var(--gold-bright);font-size:14px;margin-top:3px}
+  .role-reference{margin-top:26px}
+  .role-wing{background:var(--bg-panel);border:1px solid var(--hairline);border-radius:10px;padding:16px;margin-bottom:10px}
+  .role-wing h3{font-family:'Cinzel',serif;color:var(--gold-bright);margin:0 0 10px}
+  .role-row{display:grid;grid-template-columns:minmax(140px,.8fr) 2fr;gap:14px;padding:8px 0;border-top:1px solid rgba(54,46,84,.65);font-size:13px}
+  .role-row:first-of-type{border-top:0}.role-boss{color:var(--parchment);font-weight:600}.role-tags{color:var(--muted)}
+  .overview-goal-list{display:grid;gap:8px}.overview-goal-row{background:var(--bg-panel);border:1px solid var(--hairline);border-radius:8px;padding:10px 12px}
+  .overview-goal-top{display:flex;justify-content:space-between;gap:10px;font-size:12px;margin-bottom:7px}.overview-goal-top b{color:var(--parchment)}.overview-goal-top span{font-family:'JetBrains Mono',monospace;color:var(--gold-bright)}
+  @media(max-width:760px){.goal-form{grid-template-columns:1fr 1fr}.goal-form input:first-child{grid-column:1/-1}.goal-form button{grid-column:1/-1}.routine-columns{grid-template-columns:1fr}.routine-add{grid-template-columns:1fr}.role-row{grid-template-columns:1fr}.member-goal-head{flex-direction:column}.goal-actions{width:100%}}
+
 </style>
 
 <link rel="manifest" href="manifest.webmanifest">
@@ -1080,6 +1130,10 @@
       <button class="tab-btn" data-tab="provisioner">Provisioner Exchange</button>
       <button class="tab-btn" data-tab="crafting">Crafting Helper</button>
       <button class="tab-btn" data-tab="raidguides">Raid Guides & Resources</button>
+      <button class="tab-btn" data-tab="goals">Personal Goals</button>
+      <button class="tab-btn" data-tab="routine">Routine Builder</button>
+      <button class="tab-btn" data-tab="fractals">Fractal Dashboard</button>
+      <button class="tab-btn" data-tab="legmats">Legendary Materials</button>
       <button class="tab-btn" data-tab="weekly">Weekly Dashboard</button>
       <button class="tab-btn" data-tab="finder">Item Finder</button>
       <button class="tab-btn" data-tab="legendary">Legendary Progress</button>
@@ -1108,7 +1162,11 @@
       </div>
 
       <div class="quick-grid" style="margin-top:10px;">
-        <div class="quick-card" data-go="raidguides"><b>Raid Guides & Resources</b><span>Written guides, videos, and Snow Crows raid builds.</span></div>
+        <div class="quick-card" data-open-tab="raidguides"><b>Raid Guides & Resources</b><span>Written guides, videos, and Snow Crows raid builds.</span></div>
+        <div class="quick-card" data-open-tab="goals"><b>Personal Goals</b><span>Track your own account goals and milestones.</span></div>
+        <div class="quick-card" data-open-tab="routine"><b>Routine Builder</b><span>Build a daily and weekly GW2 checklist that fits you.</span></div>
+        <div class="quick-card" data-open-tab="fractals"><b>Fractal Dashboard</b><span>Fractal level, currencies, CM routine, and long-term milestones.</span></div>
+        <div class="quick-card" data-open-tab="legmats"><b>Legendary Materials</b><span>See key legendary currencies and materials in one place.</span></div>
       </div>
 
       <div class="section-title">Find My Item</div>
@@ -1125,6 +1183,9 @@
         <div style="font-size:12px;color:var(--muted)">The toolkit checks the permissions on your key and shows what is available.</div>
         <div class="permission-list" id="permissionList"><span class="perm">Checking…</span></div>
       </div>
+
+      <div class="section-title">Your Personal Goals</div>
+      <div id="overviewPersonalGoals"></div>
     </div>
 
 
@@ -1291,6 +1352,61 @@
         <div class="wing-guide-card"><h3>Wing 7</h3><div class="wing-subtitle">The Key of Ahdashim</div><div class="boss-list">Cardinal Adina · Cardinal Sabir · Qadim the Peerless</div><div class="guide-actions"><a class="guide-link" href="https://hardstuck.gg/gw2/guides/w7-key-of-ahdashim/" target="_blank" rel="noopener">Written Guide</a><a class="guide-link" href="https://mukluklabs.com/gw2wing7" target="_blank" rel="noopener">Video Guides</a></div></div>
         <div class="wing-guide-card"><h3>Wing 8</h3><div class="wing-subtitle">Mount Balrior</div><div class="boss-list">Decima · Greer · Ura</div><div class="guide-actions"><a class="guide-link" href="https://hardstuck.gg/gw2/guides/w8-mount-balrior/" target="_blank" rel="noopener">Written Guide</a><a class="guide-link" href="https://mukluklabs.com/gw2wing8" target="_blank" rel="noopener">Video Guides</a></div></div>
       </div>
+
+      <div class="role-reference">
+        <div class="section-title">Encounter Role Reference</div>
+        <p class="prov-intro">A quick reminder of the commonly assigned special jobs. Exact assignments can change with squad strategy, so use the linked guides for full mechanics.</p>
+        <div class="role-wing"><h3>Wing 1 · Spirit Vale</h3><div class="role-row"><div class="role-boss">Vale Guardian</div><div class="role-tags">Tank · Green group assignments</div></div><div class="role-row"><div class="role-boss">Gorseval</div><div class="role-tags">Tank · Spirit control</div></div><div class="role-row"><div class="role-boss">Sabetha</div><div class="role-tags">Cannon runners · Flak kite</div></div></div>
+        <div class="role-wing"><h3>Wing 2 · Salvation Pass</h3><div class="role-row"><div class="role-boss">Slothasor</div><div class="role-tags">Mushroom eaters · Tank / fixation management</div></div><div class="role-row"><div class="role-boss">Bandit Trio</div><div class="role-tags">Saboteur control · Mortar / environment jobs as assigned</div></div><div class="role-row"><div class="role-boss">Matthias</div><div class="role-tags">Tank positioning · Reflect / projectile support as assigned</div></div></div>
+        <div class="role-wing"><h3>Wing 3 · Stronghold of the Faithful</h3><div class="role-row"><div class="role-boss">Escort</div><div class="role-tags">Tower team · Back warg control</div></div><div class="role-row"><div class="role-boss">Keep Construct</div><div class="role-tags">Tank · Orb / add control assignments</div></div><div class="role-row"><div class="role-boss">Xera</div><div class="role-tags">Tank · Button / platform assignments</div></div></div>
+        <div class="role-wing"><h3>Wing 4 · Bastion of the Penitent</h3><div class="role-row"><div class="role-boss">Cairn</div><div class="role-tags">Green / agony assignments if used</div></div><div class="role-row"><div class="role-boss">Mursaat Overseer</div><div class="role-tags">Claim · Protect · Dispel roles</div></div><div class="role-row"><div class="role-boss">Samarog</div><div class="role-tags">Tank · Add push / immobilize support</div></div><div class="role-row"><div class="role-boss">Deimos</div><div class="role-tags">Tank · Hand kite · Oil management</div></div></div>
+        <div class="role-wing"><h3>Wing 5 · Hall of Chains</h3><div class="role-row"><div class="role-boss">Soulless Horror</div><div class="role-tags">Tank pair · Tormented Dead pushers</div></div><div class="role-row"><div class="role-boss">River of Souls</div><div class="role-tags">Escort pace · Spirit control / utility support</div></div><div class="role-row"><div class="role-boss">Statues</div><div class="role-tags">Encounter-specific split and control assignments</div></div><div class="role-row"><div class="role-boss">Dhuum</div><div class="role-tags">Tank · Kiter · Green runners</div></div></div>
+        <div class="role-wing"><h3>Wing 6 · Mythwright Gambit</h3><div class="role-row"><div class="role-boss">Conjured Amalgamate</div><div class="role-tags">Sword collectors · Shield collectors</div></div><div class="role-row"><div class="role-boss">Twin Largos</div><div class="role-tags">Two tanks · Platform split</div></div><div class="role-row"><div class="role-boss">Qadim</div><div class="role-tags">Tank · Lamp team · Qadim kite</div></div></div>
+        <div class="role-wing"><h3>Wing 7 · The Key of Ahdashim</h3><div class="role-row"><div class="role-boss">Cardinal Adina</div><div class="role-tags">Tank · Pillar placement / split groups</div></div><div class="role-row"><div class="role-boss">Cardinal Sabir</div><div class="role-tags">Tank · Special action / platform movement</div></div><div class="role-row"><div class="role-boss">Qadim the Peerless</div><div class="role-tags">Tank · Pylon kiters</div></div></div>
+        <div class="role-wing"><h3>Wing 8 · Mount Balrior</h3><div class="role-row"><div class="role-boss">Wing 8 Encounters</div><div class="role-tags">Use the written and video guides above for current encounter assignments and squad strategy.</div></div></div>
+      </div>
+    </div>
+
+
+    <div class="panel" id="panel-goals">
+      <div class="tool-hero"><h2>Personal Goals Dashboard</h2><p>Track several goals at once. Use it for legendary crafting, currency targets, collections, account milestones, or anything else you are working toward. Goals stay in your browser.</p></div>
+      <div class="goal-form">
+        <input id="personalGoalName" type="text" placeholder="Goal name, e.g. 300 Provisioner Tokens">
+        <input id="personalGoalCurrent" type="number" min="0" step="1" placeholder="Current">
+        <input id="personalGoalTarget" type="number" min="1" step="1" placeholder="Target">
+        <input id="personalGoalUnit" type="text" placeholder="Unit, e.g. tokens">
+        <button id="addPersonalGoalBtn" type="button">Add Goal</button>
+      </div>
+      <div id="personalGoalsOut"><div class="empty-note">Add your first personal goal.</div></div>
+    </div>
+
+    <div class="panel" id="panel-routine">
+      <div class="tool-hero"><h2>Daily & Weekly Routine Builder</h2><p>Build a checklist around the things you actually care about. Daily items reset with a new calendar day and weekly items reset with a new week.</p></div>
+      <div id="routineOverall" class="routine-progress"></div>
+      <div class="routine-columns">
+        <div class="routine-card"><h3>Daily Routine</h3><div id="dailyRoutineList"></div></div>
+        <div class="routine-card"><h3>Weekly Routine</h3><div id="weeklyRoutineList"></div></div>
+      </div>
+      <div class="routine-add">
+        <input id="routineNewName" type="text" placeholder="Add a custom task">
+        <select id="routineNewFrequency"><option value="daily">Daily</option><option value="weekly">Weekly</option></select>
+        <button id="addRoutineTaskBtn" type="button">Add Task</button>
+      </div>
+    </div>
+
+    <div class="panel" id="panel-fractals">
+      <div class="tool-hero"><h2>Fractal Dashboard</h2><p>A simple fractal command center for your account level, currencies, daily challenge routine, and long-term progression goals.</p></div>
+      <div id="fractalSummary" class="fractal-summary"><div class="loading-row"><div class="spinner"></div>Checking fractal data…</div></div>
+      <div class="section-title">Daily Fractal Routine</div>
+      <div id="fractalDailyChecks" class="fractal-check-grid"></div>
+      <div class="section-title">Long-Term Fractal Goals</div>
+      <div id="fractalMilestones" class="fractal-check-grid"></div>
+      <div style="margin-top:16px"><a class="guide-link" href="https://wiki.guildwars2.com/wiki/Fractals_of_the_Mists" target="_blank" rel="noopener">Open Fractals Wiki</a></div>
+    </div>
+
+    <div class="panel" id="panel-legmats">
+      <div class="tool-hero"><h2>Legendary Material Tracker</h2><p>Keep the major legendary currencies and materials visible in one place. Values are pulled from the wallet and material storage loaded by your API key.</p></div>
+      <div id="legendaryMaterialTracker" class="material-track-grid"><div class="loading-row"><div class="spinner"></div>Checking legendary materials…</div></div>
     </div>
 
     <div class="panel" id="panel-weekly">
@@ -1307,7 +1423,7 @@
     <button id="installAppBtn">Install Toolkit App</button>
     <div class="key-note" style="margin-top:10px;">Optional: install this site like an app on supported browsers.</div>
   </div>
-<div class="version-stamp">Catch Some ZZZ Guild Toolkit • Web Edition • v2.7
+<div class="version-stamp">Catch Some ZZZ Guild Toolkit • Web Edition • v3.0
   </div>
 <script>
 const CLEAN_SHARE_SOURCE = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
@@ -1946,6 +2062,57 @@ document.addEventListener('keydown', e => {
 });
 
 
+
+
+/* ---------- v3.0 Personal Goals ---------- */
+const PERSONAL_GOALS_KEY='cszzz-personal-goals-v1';
+function getPersonalGoals(){try{return JSON.parse(localStorage.getItem(PERSONAL_GOALS_KEY)||'[]');}catch(e){return []}}
+function savePersonalGoals(v){localStorage.setItem(PERSONAL_GOALS_KEY,JSON.stringify(v));renderPersonalGoals();renderOverviewPersonalGoals();}
+function addPersonalGoal(){
+  const name=document.getElementById('personalGoalName').value.trim();
+  const current=Number(document.getElementById('personalGoalCurrent').value||0);
+  const target=Number(document.getElementById('personalGoalTarget').value||0);
+  const unit=document.getElementById('personalGoalUnit').value.trim();
+  if(!name||target<=0)return;
+  const goals=getPersonalGoals();goals.push({id:Date.now().toString(36),name,current:Math.max(0,current),target,unit});savePersonalGoals(goals);
+  ['personalGoalName','personalGoalCurrent','personalGoalTarget','personalGoalUnit'].forEach(id=>document.getElementById(id).value='');
+}
+function adjustPersonalGoal(id,delta){const g=getPersonalGoals();const x=g.find(v=>v.id===id);if(!x)return;x.current=Math.max(0,Math.min(x.target,x.current+delta));savePersonalGoals(g);}
+function removePersonalGoal(id){savePersonalGoals(getPersonalGoals().filter(x=>x.id!==id));}
+function renderPersonalGoals(){const out=document.getElementById('personalGoalsOut');if(!out)return;const g=getPersonalGoals();if(!g.length){out.innerHTML='<div class="empty-note">Add your first personal goal.</div>';return;}out.innerHTML=g.map(x=>{const pct=Math.max(0,Math.min(100,Math.round(x.current/x.target*100)));return `<div class="member-goal"><div class="member-goal-head"><div><div class="member-goal-title">${escapeHtml(x.name)}</div><div class="member-goal-meta">${x.current.toLocaleString()} / ${x.target.toLocaleString()} ${escapeHtml(x.unit||'')}</div></div><div class="goal-actions"><button class="tiny-btn" onclick="adjustPersonalGoal('${x.id}',-1)">−1</button><button class="tiny-btn" onclick="adjustPersonalGoal('${x.id}',1)">+1</button><button class="tiny-btn" onclick="removePersonalGoal('${x.id}')">Remove</button></div></div><div class="progress-track"><div class="progress-fill" style="width:${pct}%"></div></div><div style="text-align:right;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold-bright);margin-top:5px">${pct}%</div></div>`}).join('');}
+function renderOverviewPersonalGoals(){let box=document.getElementById('overviewPersonalGoals');if(!box)return;const g=getPersonalGoals().slice(0,4);if(!g.length){box.innerHTML='<div class="empty-note">No personal goals yet. Add one from the Personal Goals tab.</div>';return;}box.innerHTML='<div class="overview-goal-list">'+g.map(x=>{const pct=Math.max(0,Math.min(100,Math.round(x.current/x.target*100)));return `<div class="overview-goal-row"><div class="overview-goal-top"><b>${escapeHtml(x.name)}</b><span>${pct}%</span></div><div class="progress-track"><div class="progress-fill" style="width:${pct}%"></div></div></div>`}).join('')+'</div>';}
+function escapeHtml(s){return String(s??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));}
+
+/* ---------- v3.0 Routine Builder ---------- */
+const ROUTINE_TASKS_KEY='cszzz-routine-tasks-v1';
+const ROUTINE_DEFAULTS=[
+{id:'prov',name:'Provisioner Tokens',freq:'daily'},{id:'fracs',name:'Daily Fractals',freq:'daily'},{id:'strikes',name:'Daily Strikes',freq:'daily'},{id:'wv',name:"Wizard's Vault Daily",freq:'daily'},{id:'guildnodes',name:'Guild Hall Nodes',freq:'daily'},
+{id:'raids',name:'Weekly Raids',freq:'weekly'},{id:'weeklystrikes',name:'Weekly Strikes',freq:'weekly'},{id:'conv',name:'Convergences',freq:'weekly'},{id:'wvw',name:"Wizard's Vault Weekly",freq:'weekly'}];
+function getRoutineTasks(){try{const v=JSON.parse(localStorage.getItem(ROUTINE_TASKS_KEY)||'null');return Array.isArray(v)?v:ROUTINE_DEFAULTS;}catch(e){return ROUTINE_DEFAULTS}}
+function saveRoutineTasks(v){localStorage.setItem(ROUTINE_TASKS_KEY,JSON.stringify(v));renderRoutineBuilder();}
+function routineDayKey(){return 'cszzz-routine-day-'+new Date().toISOString().slice(0,10)}
+function routineWeekKey(){return 'cszzz-routine-'+weekKey()}
+function getRoutineState(freq){const key=freq==='daily'?routineDayKey():routineWeekKey();try{return JSON.parse(localStorage.getItem(key)||'{}')}catch(e){return {}}}
+function setRoutineDone(id,freq,val){const key=freq==='daily'?routineDayKey():routineWeekKey();const v=getRoutineState(freq);v[id]=val;localStorage.setItem(key,JSON.stringify(v));renderRoutineBuilder();}
+function addRoutineTask(){const name=document.getElementById('routineNewName').value.trim();const freq=document.getElementById('routineNewFrequency').value;if(!name)return;const tasks=getRoutineTasks();tasks.push({id:'custom_'+Date.now().toString(36),name,freq});saveRoutineTasks(tasks);document.getElementById('routineNewName').value='';}
+function removeRoutineTask(id){saveRoutineTasks(getRoutineTasks().filter(x=>x.id!==id));}
+function renderRoutineBuilder(){const tasks=getRoutineTasks(),d=getRoutineState('daily'),w=getRoutineState('weekly');const render=(freq,outId,state)=>{const out=document.getElementById(outId);if(!out)return;const list=tasks.filter(x=>x.freq===freq);out.innerHTML=list.length?list.map(x=>`<div class="routine-item"><label><input type="checkbox" ${state[x.id]?'checked':''} onchange="setRoutineDone('${x.id}','${freq}',this.checked)"><span>${escapeHtml(x.name)}</span></label>${x.id.startsWith('custom_')?`<button class="tiny-btn" onclick="removeRoutineTask('${x.id}')">Remove</button>`:''}</div>`).join(''):'<div class="empty-note">No tasks yet.</div>';};render('daily','dailyRoutineList',d);render('weekly','weeklyRoutineList',w);const all=tasks;const done=all.filter(x=>(x.freq==='daily'?d:w)[x.id]).length;const pct=all.length?Math.round(done/all.length*100):0;const overall=document.getElementById('routineOverall');if(overall)overall.innerHTML=`<div class="weekly-overall"><div><div class="big">${done} / ${all.length} Complete</div><div style="color:var(--muted);font-size:13px">Your active daily and weekly routine</div></div><div style="min-width:220px;flex:1;max-width:420px"><div class="progress-track"><div class="progress-fill" style="width:${pct}%"></div></div><div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--gold-bright);text-align:right">${pct}%</div></div></div>`;}
+
+/* ---------- v3.0 Fractal Dashboard ---------- */
+const FRACTAL_DAILY=['Daily Recommended Fractal','Daily T4 Fractals','Daily Fractal CMs','Fractal Encryption / key cleanup'];
+const FRACTAL_MILESTONES=['Ad Infinitum','Fractal Savant','Fractal Prodigy','Fractal Champion','Fractal God'];
+function fractalDailyKey(){return 'cszzz-fractal-day-'+new Date().toISOString().slice(0,10)}
+const FRACTAL_MILESTONE_KEY='cszzz-fractal-milestones-v1';
+function getLocalObj(key){try{return JSON.parse(localStorage.getItem(key)||'{}')}catch(e){return {}}}
+function setFractalCheck(kind,idx,val){const key=kind==='daily'?fractalDailyKey():FRACTAL_MILESTONE_KEY;const v=getLocalObj(key);v[idx]=val;localStorage.setItem(key,JSON.stringify(v));renderFractalChecks();}
+function renderFractalChecks(){const d=getLocalObj(fractalDailyKey()),m=getLocalObj(FRACTAL_MILESTONE_KEY);const make=(arr,kind,state)=>arr.map((x,i)=>`<label class="fractal-check"><input type="checkbox" ${state[i]?'checked':''} onchange="setFractalCheck('${kind}',${i},this.checked)"><span>${escapeHtml(x)}</span></label>`).join('');const a=document.getElementById('fractalDailyChecks'),b=document.getElementById('fractalMilestones');if(a)a.innerHTML=make(FRACTAL_DAILY,'daily',d);if(b)b.innerHTML=make(FRACTAL_MILESTONES,'milestone',m);}
+async function loadFractalDashboard(){const out=document.getElementById('fractalSummary');if(!out)return;try{const account=await gw2Fetch('/account');const byName=Object.fromEntries((walletViewData||[]).map(x=>[x.currency.name,x.value]));const names=['Fractal Relic','Pristine Fractal Relic','Integrated Fractal Matrix'];const cards=[{k:'Personal Fractal Level',v:account.fractal_level??'—'},...names.map(n=>({k:n,v:(byName[n]??0).toLocaleString()}))];out.innerHTML=cards.map(x=>`<div class="fractal-stat"><div class="k">${escapeHtml(x.k)}</div><div class="v">${x.v}</div></div>`).join('');}catch(e){out.innerHTML=`<div class="empty-note">Could not load fractal account data: ${escapeHtml(e.message)}</div>`;}renderFractalChecks();}
+
+/* ---------- v3.0 Legendary Material Tracker ---------- */
+const LEGENDARY_TRACK_NAMES=['Mystic Clover','Mystic Coin','Obsidian Shard','Provisioner Token','Spirit Shard','Research Note','Legendary Insight','Magnetite Shard'];
+function findTrackedValue(name){const w=(walletViewData||[]).find(x=>x.currency.name===name);if(w)return {count:w.value,icon:w.currency.icon,where:'Wallet'};const mats=(materialViewData||[]).filter(x=>x.item.name===name);if(mats.length)return {count:mats.reduce((s,x)=>s+x.count,0),icon:mats[0].item.icon,where:'Material Storage'};const bank=(bankViewData||[]).filter(x=>x.item.name===name);if(bank.length)return {count:bank.reduce((s,x)=>s+x.count,0),icon:bank[0].item.icon,where:'Bank'};return {count:0,icon:'',where:'Not found in loaded storage'};}
+function renderLegendaryMaterialTracker(){const out=document.getElementById('legendaryMaterialTracker');if(!out)return;out.innerHTML=LEGENDARY_TRACK_NAMES.map(n=>{const x=findTrackedValue(n);return `<div class="material-track-card">${x.icon?iconImg(x.icon,38):'<div style="width:38px;height:38px;border-radius:6px;background:var(--bg-panel-raised)"></div>'}<div><div class="name">${escapeHtml(n)}</div><div class="count">${Number(x.count).toLocaleString()}</div><div style="font-size:11px;color:var(--muted);margin-top:2px">${escapeHtml(x.where)}</div></div></div>`}).join('');}
+
 /* ---------- Orchestration ---------- */
 async function refreshWalletOnly(){
   try{
@@ -1988,6 +2155,9 @@ async function loadAll(){
   try{ await loadLegendaryTracker(); }catch(e){ console.error(e); }
   try{ await loadAccountWideFinder(); }catch(e){ console.error(e); }
   try{ await loadWeeklyDashboard(); }catch(e){ console.error(e); }
+  renderPersonalGoals(); renderOverviewPersonalGoals(); renderRoutineBuilder();
+  try{ await loadFractalDashboard(); }catch(e){ console.error(e); }
+  renderLegendaryMaterialTracker();
   document.getElementById('statusLine').textContent = `Last refreshed ${new Date().toLocaleTimeString([], {hour:'numeric', minute:'2-digit'})}`;
 }
 
@@ -2050,6 +2220,8 @@ document.getElementById('forgetBtn').addEventListener('click', async () => {
 });
 
 document.getElementById('addLegendaryGoalBtn')?.addEventListener('click', addLegendaryGoal);
+document.getElementById('addPersonalGoalBtn')?.addEventListener('click', addPersonalGoal);
+document.getElementById('addRoutineTaskBtn')?.addEventListener('click', addRoutineTask);
 document.getElementById('accountWideSearch')?.addEventListener('input', renderAccountWideSearch);
 document.getElementById('resetWeeklyBtn')?.addEventListener('click',()=>{localStorage.removeItem(weekKey());renderWeeklyDashboard();});
 document.getElementById('materialsSearch').addEventListener('input', () => renderMaterials());
