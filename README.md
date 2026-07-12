@@ -1,3 +1,13 @@
+# Catch Some ZZZ Guild Toolkit v3.15
+
+## Event Timer restoration patch
+
+* Restored the missing Event Timer expansion definitions, event schedule dataset, preference helpers, favorites helpers, and next-occurrence calculation.
+* Fixed the JavaScript failure that left Local Time blank, Visible Events at 0, and prevented filters and event cards from rendering.
+* Preserved explicit UTC handling for irregular schedules such as Tequatl.
+* Updated visible version labels and the service-worker cache to `cszzz-toolkit-v3.15`.
+* Kept the Guild Wars 2 Wiki Event Timers page as the schedule reference source.
+
 # Catch Some ZZZ Guild Toolkit v3.14
 
 ## Provisioner Token audit
