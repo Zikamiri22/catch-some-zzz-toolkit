@@ -1,4 +1,10 @@
-# Catch Some ZZZ Guild Toolkit v3.10
+# Catch Some ZZZ Guild Toolkit v3.14
+
+## Provisioner Token audit
+
+Rebuilt the Provisioner Token guide from the current GW2 Wiki acquisition table. Added all fixed one-token exchange vendors shown in that table, grouped exchange choices under the correct vendor, and modeled weekly limits at the vendor/exchange source level rather than multiplying the limit by every displayed item choice. Added search, region filtering, weekly account-scoped completion, Wiki links, and copyable verified waypoints where available.
+
+# Catch Some ZZZ Guild Toolkit v3.11
 
 ## Release focus
 
@@ -52,3 +58,18 @@ All API calls remain client side. Saved API keys and local tracking remain in th
 
 ## v3.8 Dashboard Navigation Update
 Dashboard widgets now act as direct navigation cards. Clicking or keyboard activating a widget opens its matching app section. Interactive controls inside widgets keep their existing behavior and do not trigger card navigation. Quick Tools remains a multi-action widget.
+
+
+## v3.11 Event timer accuracy patch
+
+- Added explicit UTC schedule support for irregular event rotations.
+- Corrected Tequatl the Sunless to the verified UTC starts: 00:00, 03:00, 07:00, 11:30, 16:00, and 19:00.
+- Added Splintered Coast area information and a verified schedule label for Tequatl.
+- Removed unverified Visions of Eternity timer entries until authoritative schedules are available.
+- Added a direct source link to the official Guild Wars 2 Wiki Event Timers page.
+- Updated the service-worker cache to `cszzz-toolkit-v3.11`.
+
+
+## v3.14 Raid Wing Mapping Fix
+
+Replaced API catalog-order grouping with a fixed verified Wing 1 through Wing 8 encounter map. Removed invalid Gate and Camp entries and corrected all encounter assignments. Weekly completion still comes from `/account/raids`.

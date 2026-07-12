@@ -41,6 +41,8 @@ button,input,select{font:inherit}a{color:var(--cyan)}.app{display:grid;grid-temp
 
 
 .footer-credits{align-items:center;gap:10px;flex-wrap:nowrap}.footer-copy{display:grid;gap:3px;text-align:left;line-height:1.35}.footer-copy a{color:#a999ba;text-decoration:none}.footer-copy a:hover{color:var(--cyan);text-decoration:underline}.footer-disclaimer{color:#6f627b;font-size:11px}@media(max-width:700px){.footer-credits{align-items:flex-start;padding:22px 18px}.footer-copy{font-size:11px}.footer-disclaimer{font-size:10px}.footer-credits img{width:30px;height:30px;flex:0 0 auto}}
+
+.provisioner-intro{display:flex;justify-content:space-between;align-items:center;gap:18px;margin-bottom:18px}.provisioner-toolbar{display:grid;grid-template-columns:2fr 1fr auto;gap:10px;margin-bottom:16px}.provisioner-summary{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}.provisioner-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.prov-card{padding:18px;border:1px solid rgba(73,238,246,.18);border-radius:22px;background:linear-gradient(145deg,rgba(49,35,65,.96),rgba(28,23,39,.96))}.prov-card.done{border-color:rgba(80,226,186,.55)}.prov-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.prov-title{font-size:20px;font-weight:900}.prov-meta{color:var(--muted);font-size:14px;margin-top:4px}.prov-limit{white-space:nowrap;font-size:12px;font-weight:900;padding:7px 10px;border-radius:999px;background:rgba(73,238,246,.1);border:1px solid rgba(73,238,246,.25);color:var(--cyan)}.prov-exchanges{margin:14px 0 0;padding:0;list-style:none;display:grid;gap:8px}.prov-exchanges li{display:flex;gap:8px;align-items:flex-start;padding:9px 10px;border-radius:12px;background:rgba(0,0,0,.14)}.prov-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}.source-strip{margin-top:16px;font-size:13px;color:var(--muted)}@media(max-width:760px){.provisioner-intro{align-items:flex-start;flex-direction:column}.provisioner-toolbar{grid-template-columns:1fr}.provisioner-summary,.provisioner-grid{grid-template-columns:1fr}.prov-card{padding:16px}.prov-title{font-size:18px}}
 </style>
 </head>
 <body>
@@ -99,7 +101,7 @@ button,input,select{font:inherit}a{color:var(--cyan)}.app{display:grid;grid-temp
 <div class="guild-section-banner"><img src="icons/icon-192.png" alt=""><div><b>Catch Some ZZZ Event Watch</b><span>Because missing the meta by two minutes is not the kind of ZZZ we are trying to catch.</span></div></div>
 <div class="grid stats"><div class="stat"><div class="label">Local Time</div><div class="value timer-clock" id="eventLocalClock">—</div></div><div class="stat"><div class="label">Visible Events</div><div class="value" id="eventVisibleCount">0</div></div><div class="stat"><div class="label">Favorites</div><div class="value" id="eventFavoriteCount">0</div></div></div>
 <div class="card"><div class="event-controls"><input class="input" id="eventSearch" placeholder="Search event, map, or expansion"><div class="toolbar"><button class="btn ghost" id="eventFavoritesOnly">☆ Favorites Only</button><button class="btn ghost" id="eventResetFilters">Reset Filters</button></div></div><div class="event-filter-row" id="eventExpansionFilters"></div><div class="event-source"><img src="icons/icon-192.png" alt=""><span>Schedules are presented as repeating event clocks. Event and map names link to the Guild Wars 2 Wiki. Use the official Wiki timer as the reference source for full schedules.</span><a href="https://wiki.guildwars2.com/wiki/Event_timers" target="_blank" rel="noopener noreferrer">Open Wiki Timer ↗</a></div></div>
-<div style="height:16px"></div><div class="event-grid" id="eventGrid"></div></section>
+<div class="meta" style="margin-top:14px">Schedule source: <a href="https://wiki.guildwars2.com/wiki/Event_timers" target="_blank" rel="noopener noreferrer">Guild Wars 2 Wiki Event Timers ↗</a>. Irregular schedules use explicit UTC start times.</div><div style="height:16px"></div><div class="event-grid" id="eventGrid"></div></section>
 
 <section class="panel" id="panel-fractals"><div class="page-title"><div><div class="eyebrow">ACTIVITIES</div><h1>Fractals</h1><p>See today's active Tier 4 and Recommended fractals, then compare them against your account's completion progress.</p></div><button class="btn add-dashboard" data-widget="fractal-progress">＋ Add to Dashboard</button></div><div class="sync-strip"><span class="sync-badge" id="fractalSyncBadge">Fractal sync: waiting</span><span class="muted" id="fractalSyncStamp">Connect or refresh your account to load today's rotation.</span></div><div class="fractal-summary"><div class="fractal-summary-card"><div class="label">Tier 4 Dailies</div><div class="big" id="fractalT4Summary">0 / 3</div></div><div class="fractal-summary-card"><div class="label">Recommended</div><div class="big" id="fractalRecSummary">0 / 3</div></div></div><div class="section-grid completion-grid"><div class="card"><div class="card-head"><h3>Daily Tier 4</h3><span class="source-label" id="fractalT4Source">GW2 API</span></div><div class="fractal-group" id="fractalT4Checks"><div class="empty">Connect your account to load today's Tier 4 fractals.</div></div></div><div class="card"><div class="card-head"><h3>Daily Recommended</h3><span class="source-label" id="fractalRecSource">GW2 API</span></div><div class="fractal-group" id="fractalRecommendedChecks"><div class="empty">Connect your account to load today's Recommended fractals.</div></div></div></div><div class="card" style="margin-top:16px"><div class="card-head"><h3>Long Term Goals</h3><span class="source-label">Personal tracking</span></div><div id="fractalGoals"></div></div><div class="fractal-note">Daily completion is based only on the currently active fractal achievements returned by the GW2 API and your account achievement progress. Long term goals remain personal checklists.</div></section>
 
@@ -107,7 +109,14 @@ button,input,select{font:inherit}a{color:var(--cyan)}.app{display:grid;grid-temp
 
 <section class="panel" id="panel-goals"><div class="page-title"><div><div class="eyebrow">ACTIVITIES</div><h1>Personal Goals</h1><p>Track legendary funds, collections, achievement milestones, currencies, or anything else you are working toward.</p></div><button class="btn add-dashboard" data-widget="personal-goals">＋ Add to Dashboard</button></div><div class="section-grid"><div class="card"><h3>Add Goal</h3><input class="input" id="goalName" placeholder="Goal name"><div class="search-row" style="margin-top:8px"><input class="input" id="goalCurrent" type="number" min="0" value="0" placeholder="Current"><input class="input" id="goalTarget" type="number" min="1" value="100" placeholder="Target"></div><input class="input" id="goalUnit" style="margin-top:8px" placeholder="Unit, optional"><button class="btn primary" id="addGoalBtn" style="margin-top:8px;width:100%">Add Goal</button></div><div class="card" style="grid-column:span 2"><h3>Your Goals</h3><div id="goalsList" class="list"><div class="empty">Add your first personal goal.</div></div></div></div></section>
 
-<section class="panel" id="panel-provisioner"><div class="page-title"><div><div class="eyebrow">TOOLS</div><h1>Provisioner Planner</h1><p>A focused daily route with copyable waypoints and local vendor completion tracking.</p></div><button class="btn add-dashboard" data-widget="provisioner-progress">＋ Add to Dashboard</button></div><div class="section-grid"><div class="card" style="grid-column:span 2"><h3>Today's Route</h3><div class="list" id="provisionerRoute"></div><button class="btn primary" id="copyRouteBtn" style="margin-top:12px">Copy All Waypoints</button></div><div class="card"><h3>Daily Progress</h3><div class="value" id="provisionerPct" style="font-size:34px;font-weight:900">0%</div><div class="progress"><span id="provisionerBar" style="width:0%"></span></div><p class="muted">Completion resets each calendar day.</p></div></div></section>
+<section class="panel" id="panel-provisioner">
+<div class="page-title"><div><div class="eyebrow">TOOLS</div><h1>Provisioner Token Guide</h1><p>Verified one-token exchanges and vendor locations, grouped by weekly limit.</p></div><button class="btn add-dashboard" data-widget="provisioner-progress">＋ Add to Dashboard</button></div>
+<div class="card provisioner-intro"><div><span class="sync-badge ok">Wiki verified</span><h3 style="margin-top:10px">Weekly exchange guide</h3><p class="muted">For the vendors marked <b>7 per week</b>, the listed items are exchange choices at that vendor. The vendor contributes up to 7 tokens for the week, not 7 tokens for every item shown.</p></div><a class="btn ghost" href="https://wiki.guildwars2.com/wiki/Provisioner_Token" target="_blank" rel="noopener">Official Wiki ↗</a></div>
+<div class="toolbar provisioner-toolbar"><input id="provisionerSearch" class="input" placeholder="Search vendor, map, or exchange item"><select id="provisionerRegion" class="input"><option value="all">All regions</option><option value="cities">Core cities</option><option value="hot">Heart of Maguuma</option><option value="competitive">WvW / PvP</option><option value="soto">Wizard's Tower</option></select><button class="btn ghost" id="copyVisibleProvisionerWaypoints">Copy visible waypoints</button></div>
+<div class="provisioner-summary"><div class="stat-card"><span>Vendors shown</span><strong id="provisionerVendorCount">0</strong></div><div class="stat-card"><span>Weekly progress</span><strong id="provisionerPct">0%</strong><div class="progress"><span id="provisionerBar" style="width:0%"></span></div></div></div>
+<div id="provisionerRoute" class="provisioner-grid"></div>
+<div class="source-strip">Source: <a href="https://wiki.guildwars2.com/wiki/Provisioner_Token" target="_blank" rel="noopener">GW2 Wiki Provisioner Token acquisition table ↗</a></div>
+</section>
 
 <section class="panel" id="panel-crafting"><div class="page-title"><div><div class="eyebrow">TOOLS</div><h1>Crafting Helper</h1><p>Use the best external tools instead of rebuilding what already works.</p></div></div><div class="resource-grid"><a class="resource" href="https://gw2efficiency.com/crafting/calculator" target="_blank" rel="noopener"><span class="badge">GW2Efficiency</span><h3>Crafting Calculator</h3><p class="muted">Plan costs, use owned materials, and build shopping lists.</p></a><a class="resource" href="https://gw2efficiency.com/crafting/recipes" target="_blank" rel="noopener"><span class="badge">GW2Efficiency</span><h3>Recipe Search</h3><p class="muted">Find recipe trees and discipline requirements.</p></a><a class="resource" href="https://wiki.guildwars2.com/wiki/Crafting" target="_blank" rel="noopener"><span class="badge">Official Wiki</span><h3>Crafting Guide</h3><p class="muted">Recipes, disciplines, acquisition details, and notes.</p></a><a class="resource" href="https://snowcrows.com/builds/raids" target="_blank" rel="noopener"><span class="badge">Snow Crows</span><h3>Raid Builds</h3><p class="muted">Current raid builds, gear, traits, and rotations.</p></a></div><div class="card" style="margin-top:16px"><h3>Search the GW2 Wiki</h3><div class="search-row"><input class="input" id="wikiSearch" placeholder="Item, material, legendary, recipe, or discipline"><button class="btn primary" id="wikiBtn">Search Wiki</button></div></div></section>
 
@@ -121,7 +130,7 @@ button,input,select{font:inherit}a{color:var(--cyan)}.app{display:grid;grid-temp
   <img src="icons/icon-192.png" alt="Catch Some ZZZ logo">
   <div class="footer-copy">
     <div><strong>Sources:</strong> <a href="https://wiki.guildwars2.com/wiki/Main_Page" target="_blank" rel="noopener noreferrer">GW2 Wiki</a> · <a href="https://snowcrows.com/" target="_blank" rel="noopener noreferrer">Snow Crows</a> · <a href="https://mukluklabs.com/" target="_blank" rel="noopener noreferrer">Mukluk</a> · <a href="https://hardstuck.gg/" target="_blank" rel="noopener noreferrer">Hardstuck</a> · <a href="https://guildjen.com/" target="_blank" rel="noopener noreferrer">GuildJen</a> · <a href="https://gw2efficiency.com/" target="_blank" rel="noopener noreferrer">GW2Efficiency</a></div>
-    <div class="footer-disclaimer">Catch Some ZZZ Guild Toolkit · Web Edition · v3.10 · Unofficial fan project. Not affiliated with or endorsed by ArenaNet or NCSOFT.</div>
+    <div class="footer-disclaimer">Catch Some ZZZ Guild Toolkit · Web Edition · v3.14 · Unofficial fan project. Not affiliated with or endorsed by ArenaNet or NCSOFT.</div>
   </div>
 </div>
 </main></div>
@@ -281,14 +290,54 @@ function finderLocations(q){q=q.toLowerCase();const out=[];const add=(arr,loc)=>
 function finderSummary(q){if(!q)return 'Type an item name first.';const rows=finderLocations(q);if(!rows.length)return 'No loaded locations matched that search.';const total=rows.reduce((a,x)=>a+x.count,0);return `<div>${wikiLink(rows[0].name)} · <b>${total.toLocaleString()} total</b></div><div style="margin-top:6px">${rows.map(x=>`${esc(x.location)}: ${x.count}`).join('<br>')}</div>`}
 function runFinder(){const q=$('#finderSearch').value.trim();const rows=finderLocations(q);$('#finderResults').innerHTML=rows.length?rows.map(x=>`<div class="list-row"><div><b>${wikiLink(x.name)}</b><div class="meta">${esc(x.location)}</div></div><b>${x.count}</b></div>`).join(''):'<div class="empty">No loaded locations matched that search.</div>'}
 function renderLegendary(){const copies=state.armory.reduce((a,x)=>a+x.count,0);$('#legendaryCount').textContent=state.armory.length||'—';$('#legendaryCopies').textContent=copies||'—';$('#legendaryList').innerHTML=state.armory.map(x=>{const name=state.items[x.id]?.name||state.legendaryCatalog[x.id]?.name||`Legendary ${x.id}`;return `<div class="list-row"><div><b>${wikiLink(name)}</b></div><b>×${x.count}</b></div>`}).join('')||'<div class="empty">No armory data loaded.</div>'}
-const raids=['Wing 1','Wing 2','Wing 3','Wing 4','Wing 5','Wing 6','Wing 7','Wing 8'];
+const RAID_WINGS=[
+  {name:'Wing 1',title:'Spirit Vale',encounters:[
+    {id:'vale_guardian',name:'Vale Guardian'},
+    {id:'spirit_woods',name:'Spirit Woods'},
+    {id:'gorseval',name:'Gorseval the Multifarious'},
+    {id:'sabetha',name:'Sabetha the Saboteur'}]},
+  {name:'Wing 2',title:'Salvation Pass',encounters:[
+    {id:'slothasor',name:'Slothasor'},
+    {id:'bandit_trio',name:'Bandit Trio'},
+    {id:'matthias',name:'Matthias Gabrel'}]},
+  {name:'Wing 3',title:'Stronghold of the Faithful',encounters:[
+    {id:'escort',name:'Escort'},
+    {id:'keep_construct',name:'Keep Construct'},
+    {id:'twisted_castle',name:'Twisted Castle'},
+    {id:'xera',name:'Xera'}]},
+  {name:'Wing 4',title:'Bastion of the Penitent',encounters:[
+    {id:'cairn',name:'Cairn the Indomitable'},
+    {id:'mursaat_overseer',name:'Mursaat Overseer'},
+    {id:'samarog',name:'Samarog'},
+    {id:'deimos',name:'Deimos'}]},
+  {name:'Wing 5',title:'Hall of Chains',encounters:[
+    {id:'soulless_horror',name:'Soulless Horror'},
+    {id:'river_of_souls',name:'River of Souls'},
+    {id:'statues_of_grenth',name:'Statues of Grenth'},
+    {id:'dhuum',name:'Dhuum'}]},
+  {name:'Wing 6',title:'Mythwright Gambit',encounters:[
+    {id:'conjured_amalgamate',name:'Conjured Amalgamate'},
+    {id:'twin_largos',name:'Twin Largos'},
+    {id:'qadim',name:'Qadim'}]},
+  {name:'Wing 7',title:'The Key of Ahdashim',encounters:[
+    {id:'adina',name:'Cardinal Adina'},
+    {id:'sabir',name:'Cardinal Sabir'},
+    {id:'qadim_the_peerless',name:'Qadim the Peerless'}]},
+  {name:'Wing 8',title:'Mount Balrior',encounters:[
+    {id:'greer',name:'Greer, the Blightbringer'},
+    {id:'decima',name:'Decima, the Stormsinger'},
+    {id:'ura',name:'Ura, the Steamshrieker'}]}
+];
+const raids=RAID_WINGS.map(w=>w.name);
 const strikes=['IBS Fast 5','IBS Priority','EOD Strikes','SOTO Strikes','Janthir Strikes'];
 function weeklyState(){return getJSON(`cszzz-weekly-v2-${accountScope()}-${weekKey()}`,{})}
 function saveWeekly(s){setJSON(`cszzz-weekly-v2-${accountScope()}-${weekKey()}`,s);renderWeekly();renderDashboard()}
 function raidWingResults(){
   const done=new Set(state.raidCompletions||[]);
-  if(!(state.raidCatalog||[]).length)return raids.map(name=>({name,done:false,encounters:[],synced:false}));
-  return state.raidCatalog.slice(0,8).map((wing,i)=>{const events=(wing.wings||[]).flatMap(w=>w.events||[]);const encounters=events.filter(e=>e.type==='Boss'||e.type==='Checkpoint'||!e.type).map(e=>({id:e.id,name:String(e.id||'').replaceAll('_',' ').replace(/\b\w/g,c=>c.toUpperCase()),done:done.has(e.id)}));return{name:`Wing ${i+1}`,done:encounters.length>0&&encounters.every(e=>e.done),encounters,synced:true}})
+  return RAID_WINGS.map(wing=>{
+    const encounters=wing.encounters.map(encounter=>({...encounter,done:done.has(encounter.id)}));
+    return {name:wing.name,title:wing.title,done:encounters.every(encounter=>encounter.done),encounters,synced:true};
+  });
 }
 function strikeApiSummary(){
   const rows=relevantAchievementRows('strike');
@@ -351,51 +400,24 @@ function renderFractals(){
   const rotation=state.fractalRotationLoaded;$('#fractalSyncBadge').textContent=canSync?'Daily Fractals: synced':rotation?'Rotation loaded · completion unavailable':'Daily Fractals: unavailable';$('#fractalSyncBadge').className='sync-badge '+(canSync?'ok':'partial');$('#fractalSyncStamp').textContent=canSync?`Today's active Tier 4 and Recommended fractals are matched to this account.`:rotation?(state.fractalSyncMessage||`Today's rotation is loaded. Use an API key with Progression permission to sync completion.`):(state.fractalSyncMessage||`The GW2 daily rotation is unavailable right now.`);
 }
 const provisioners=[
- {name:'Lion\'s Arch',wp:'[&BA8EAAA=]'}, {name:'Verdant Brink',wp:'[&BAgIAAA=]'}, {name:'Auric Basin',wp:'[&BNYHAAA=]'}, {name:'Tangled Depths',wp:'[&BAwIAAA=]'}, {name:'Obsidian Sanctum',wp:'[&BAECAAA=]'}, {name:'Wizard\'s Tower',wp:'[&BNoNAAA=]'}
+ {id:'ash',name:'Ash Legion Provisioner',region:'cities',area:'Memorial Quadrant',map:'Black Citadel',wp:'',limit:7,limitLabel:'7 per week',exchanges:['12 Superior Rune of the Citadel','1 Obsidian Shard','20 Large Skull']},
+ {id:'aym',name:'Aym',region:'cities',area:'Trade Commons',map:'Hoelbrak',wp:'',limit:7,limitLabel:'7 per week',exchanges:['14 Superior Rune of Hoelbrak','20 Superior Sigil of Leeching','1 Spool of Thick Elonian Cord']},
+ {id:'skritt',name:'Skritt Trader',region:'cities',area:"Commodore's Quarter",map:"Lion's Arch",wp:'',limit:7,limitLabel:'7 per week',exchanges:['1 Mystic Forge Stone','1 Superior Rune of the Adventurer','5 Globs of Ectoplasm']},
+ {id:'synergetics',name:'Synergetics Intern',region:'cities',area:'Interdisciplinary Accessium',map:'Rata Sum',wp:'',limit:7,limitLabel:'7 per week',exchanges:['14 Superior Rune of Rata Sum','24 Crystal Lodestones','1 Charged Quartz Crystal']},
+ {id:'temple',name:'Temple Quartermaster',region:'cities',area:'Dwayna High Road',map:"Divinity's Reach",wp:'',limit:7,limitLabel:'7 per week',exchanges:['4 Superior Runes of Divinity','34 Superior Sigils of Justice','1 Lump of Mithrillium']},
+ {id:'warden',name:'Warden Eve',region:'cities',area:"Maker's Terrace",map:'The Grove',wp:'',limit:7,limitLabel:'7 per week',exchanges:['14 Superior Runes of the Grove','3 Sheets of Ambrite','1 Glob of Elder Spirit Residue']},
+ {id:'natomi',name:'Quartermaster Natomi',region:'hot',area:"Maguuma's Breach",map:'Verdant Brink',wp:'[&BAgIAAA=]',limit:7,limitLabel:'7 per week',exchanges:['1 Reclaimed Metal Plate']},
+ {id:'rakatin',name:'Scavenger Rakatin',region:'hot',area:'Tarnished Treetop',map:'Auric Basin',wp:'[&BNYHAAA=]',limit:7,limitLabel:'7 per week',exchanges:['1 Auric Ingot']},
+ {id:'supply',name:'Supply Assistant',region:'hot',area:'Ogre Camp',map:'Tangled Depths',wp:'[&BAwIAAA=]',limit:7,limitLabel:'7 per week',exchanges:['1 Chak Egg']},
+ {id:'dugan',name:'Dugan',region:'competitive',area:'World vs. World',map:'World vs. World',wp:'',limit:25,limitLabel:'25 per week',exchanges:['5 Memory of Battle + 5 Testimony of Castoran Heroics + 5 WvW Skirmish Claim Tickets + 10 Badges of Honor']},
+ {id:'league-ticket',name:'League Vendor',region:'competitive',area:'Hall of Memories',map:'Heart of the Mists',wp:'',limit:15,limitLabel:'15 per week',exchanges:['5 PvP League Tickets + 100 Shards of Glory']},
+ {id:'league-emblem',name:'League Vendor',region:'competitive',area:'Hall of Memories',map:'Heart of the Mists',wp:'',limit:2,limitLabel:'2 per week',exchanges:['5 Emblems of Tournament Victory for 1 token']},
+ {id:'rend',name:'Rend Scorchmaul',region:'soto',area:'Outer Ring',map:"The Wizard's Tower",wp:'[&BNoNAAA=]',limit:null,limitLabel:'Unlimited',exchanges:['300 Research Notes','1 Lump of Mithrillium','1 Glob of Elder Spirit Residue','1 Spool of Thick Elonian Cord','1 Charged Quartz Crystal']}
 ];
-function provisionerState(){return getJSON(`daily-checks-${todayKey()}`,{})} function provisionerProgress(){const s=provisionerState(),done=provisioners.filter(x=>s[x.name]).length,total=provisioners.length;return{done,total,pct:Math.round(done/total*100)}}
-function renderProvisioner(){const s=provisionerState();$('#provisionerRoute').innerHTML=provisioners.map(x=>`<div class="list-row"><label style="display:flex;align-items:center;gap:9px"><input type="checkbox" data-prov="${esc(x.name)}" ${s[x.name]?'checked':''}><span><b>${esc(x.name)}</b><div class="meta">${x.wp}</div></span></label><button class="mini-btn" data-copy="${x.wp}">Copy</button></div>`).join('');$$('[data-prov]').forEach(c=>c.onchange=()=>{const x=provisionerState();x[c.dataset.prov]=c.checked;setJSON(`daily-checks-${todayKey()}`,x);renderProvisioner();renderDashboard()});$$('[data-copy]').forEach(b=>b.onclick=()=>navigator.clipboard.writeText(b.dataset.copy).then(()=>toast('Waypoint copied')));const p=provisionerProgress();$('#provisionerPct').textContent=p.pct+'%';$('#provisionerBar').style.width=p.pct+'%'}
-const EVENT_EXPANSIONS=[
- {id:'core',label:'Core'}, {id:'hot',label:'Heart of Thorns'}, {id:'pof',label:'Path of Fire'},
- {id:'eod',label:'End of Dragons'}, {id:'soto',label:'Secrets of the Obscure'}, {id:'jw',label:'Janthir Wilds'}, {id:'voe',label:'Visions of Eternity'}
-];
-// start is UTC minute-of-day for one occurrence; interval is repeating minutes.
-const EVENT_TIMERS=[
- {id:'shadow-behemoth',name:'Shadow Behemoth',map:'Queensdale',exp:'core',start:100,interval:120,wp:'[&BPcAAAA=]'},
- {id:'fire-elemental',name:'Fire Elemental',map:'Metrica Province',exp:'core',start:45,interval:120,wp:'[&BEcAAAA=]'},
- {id:'svanir-shaman',name:'Svanir Shaman Chief',map:'Wayfarer Foothills',exp:'core',start:10,interval:120,wp:'[&BMIDAAA=]'},
- {id:'tequatl',name:'Tequatl the Sunless',map:'Sparkfly Fen',exp:'core',start:0,interval:180,wp:'[&BNABAAA=]'},
- {id:'verdant-night',name:'Night Bosses',map:'Verdant Brink',exp:'hot',start:10,interval:120,wp:'[&BN4HAAA=]'},
- {id:'octovine',name:'Octovine',map:'Auric Basin',exp:'hot',start:60,interval:120,wp:'[&BNYHAAA=]'},
- {id:'chak-gerent',name:'Chak Gerent',map:'Tangled Depths',exp:'hot',start:30,interval:120,wp:'[&BPUHAAA=]'},
- {id:'dragons-stand',name:"Dragon's Stand Meta",map:"Dragon's Stand",exp:'hot',start:90,interval:120,wp:'[&BBAIAAA=]'},
- {id:'casino-blitz',name:'Casino Blitz',map:'Crystal Oasis',exp:'pof',start:5,interval:120,wp:'[&BJMKAAA=]'},
- {id:'buried-treasure',name:'Buried Treasure',map:'Desert Highlands',exp:'pof',start:60,interval:120,wp:'[&BGoKAAA=]'},
- {id:'doppelganger',name:'Doppelganger',map:'Elon Riverlands',exp:'pof',start:0,interval:120,wp:'[&BFMKAAA=]'},
- {id:'maws-of-torment',name:'Maws of Torment',map:'The Desolation',exp:'pof',start:60,interval:120,wp:'[&BKMKAAA=]'},
- {id:'aetherblade-assault',name:'Aetherblade Assault',map:'Seitung Province',exp:'eod',start:30,interval:120,wp:'[&BPEMAAA=]'},
- {id:'kaineng-blackout',name:'Kaineng Blackout',map:'New Kaineng City',exp:'eod',start:60,interval:120,wp:'[&BBkNAAA=]'},
- {id:'gang-war',name:'Gang War of Echovald',map:'Echovald Wilds',exp:'eod',start:90,interval:120,wp:'[&BMwMAAA=]'},
- {id:'dragons-end',name:"Dragon's End Meta",map:"Dragon's End",exp:'eod',start:0,interval:120,wp:'[&BPEMAAA=]'},
- {id:'skywatch',name:'Unlocking the Wizard’s Tower',map:'Skywatch Archipelago',exp:'soto',start:0,interval:120,wp:'[&BCsOAAA=]'},
- {id:'amnytas',name:'Defense of Amnytas',map:'Amnytas',exp:'soto',start:60,interval:120,wp:'[&BDUOAAA=]'},
- {id:'inner-nayos',name:'The Midnight King',map:'Inner Nayos',exp:'soto',start:30,interval:120,wp:'[&BBEOAAA=]'},
- {id:'janthir-syntri',name:'Of Mists and Monsters',map:'Janthir Syntri',exp:'jw',start:30,interval:120,wp:'[&BCoPAAA=]'},
- {id:'lowland-shore',name:'Lowland Shore Meta',map:'Lowland Shore',exp:'jw',start:0,interval:120,wp:'[&BCYPAAA=]'},
- {id:'shipwreck-strand',name:'Shipwreck Strand World Boss',map:'Shipwreck Strand',exp:'voe',start:40,interval:120,wp:'[&BHUPAAA=]'},
- {id:'starlit-weald',name:'Starlit Weald Meta',map:'Starlit Weald',exp:'voe',start:10,interval:120,wp:''}
-];
-function eventPrefs(){return getJSON(STORAGE.eventPrefs,{expansions:EVENT_EXPANSIONS.map(x=>x.id),favoritesOnly:false,query:''})}
-function saveEventPrefs(p){setJSON(STORAGE.eventPrefs,p);renderEventTimer();renderDashboard()}
-function eventFavorites(){return getJSON(STORAGE.eventFavs,[])}
-function eventExpansionLabel(id){return EVENT_EXPANSIONS.find(x=>x.id===id)?.label||id}
-function utcMinuteNow(d=new Date()){return d.getUTCHours()*60+d.getUTCMinutes()+d.getUTCSeconds()/60}
-function eventNextOccurrence(e,now=new Date()){
- const minute=utcMinuteNow(now),dayStart=Date.UTC(now.getUTCFullYear(),now.getUTCMonth(),now.getUTCDate());
- let k=Math.ceil((minute-e.start)/e.interval); if(k<0)k=0;
- let start=e.start+k*e.interval; while(start<minute)start+=e.interval;
- return new Date(dayStart+start*60000);
-}
+function provisionerState(){return getJSON(`cszzz-provisioner-weekly-v2-${accountScope()}-${weekKey()}`,{})}
+function provisionerProgress(){const s=provisionerState(),tracked=provisioners.filter(x=>x.limit!==null),done=tracked.filter(x=>s[x.id]).length,total=tracked.length;return{done,total,pct:total?Math.round(done/total*100):0}}
+function visibleProvisioners(){const q=($('#provisionerSearch')?.value||'').trim().toLowerCase(),region=$('#provisionerRegion')?.value||'all';return provisioners.filter(x=>(region==='all'||x.region===region)&&(!q||[x.name,x.area,x.map,...x.exchanges].join(' ').toLowerCase().includes(q)))}
+function renderProvisioner(){const s=provisionerState(),rows=visibleProvisioners();$('#provisionerVendorCount').textContent=rows.length;$('#provisionerRoute').innerHTML=rows.map(x=>`<article class="prov-card ${s[x.id]?'done':''}"><div class="prov-head"><div><div class="prov-title">${wikiLink(x.name)}</div><div class="prov-meta">${esc(x.area)} · ${wikiLink(x.map)}</div></div><span class="prov-limit">${esc(x.limitLabel)}</span></div><ul class="prov-exchanges">${x.exchanges.map(e=>`<li><span>1 token for</span><b>${wikiLink(e.replace(/^\d+\s+/,''),e)}</b></li>`).join('')}</ul><div class="prov-actions">${x.limit!==null?`<label class="mini-btn"><input type="checkbox" data-prov="${x.id}" ${s[x.id]?'checked':''}> Weekly stop complete</label>`:''}${x.wp?`<button class="mini-btn" data-copy="${x.wp}">Copy waypoint</button>`:''}<a class="mini-btn" href="${wikiUrl(x.name)}" target="_blank" rel="noopener">Wiki ↗</a></div></article>`).join('')||'<div class="empty">No vendors match this search.</div>';$$('[data-prov]').forEach(c=>c.onchange=()=>{const x=provisionerState();x[c.dataset.prov]=c.checked;setJSON(`cszzz-provisioner-weekly-v2-${accountScope()}-${weekKey()}`,x);renderProvisioner();renderDashboard()});$$('[data-copy]').forEach(b=>b.onclick=()=>navigator.clipboard.writeText(b.dataset.copy).then(()=>toast('Waypoint copied')));const p=provisionerProgress();$('#provisionerPct').textContent=p.pct+'%';$('#provisionerBar').style.width=p.pct+'%'}
 function eventCountdownText(ms){if(ms<=0)return 'Starting now';const total=Math.floor(ms/1000),h=Math.floor(total/3600),m=Math.floor((total%3600)/60),sec=total%60;return h?`${h}h ${String(m).padStart(2,'0')}m`:`${m}m ${String(sec).padStart(2,'0')}s`}
 function visibleEvents(){const p=eventPrefs(),f=eventFavorites(),q=(p.query||'').toLowerCase().trim();return EVENT_TIMERS.filter(e=>p.expansions.includes(e.exp)).filter(e=>!p.favoritesOnly||f.includes(e.id)).filter(e=>!q||`${e.name} ${e.map} ${eventExpansionLabel(e.exp)}`.toLowerCase().includes(q)).map(e=>({...e,next:eventNextOccurrence(e)})).sort((a,b)=>a.next-b.next)}
 function renderEventTimer(){
@@ -405,7 +427,7 @@ function renderEventTimer(){
  const events=visibleEvents(),now=Date.now();
  $('#eventVisibleCount').textContent=events.length;$('#eventFavoriteCount').textContent=f.length;$('#eventLocalClock').textContent=new Date().toLocaleTimeString([], {hour:'numeric',minute:'2-digit',second:'2-digit'});
  $('#eventFavoritesOnly').textContent=p.favoritesOnly?'★ Favorites Only':'☆ Favorites Only';$('#eventFavoritesOnly').classList.toggle('primary',p.favoritesOnly);
- $('#eventGrid').innerHTML=events.length?events.map(e=>{const ms=e.next-now,soon=ms<=15*60000,live=ms<=60000;return `<article class="event-card ${soon?'soon':''} ${live?'live':''}"><div class="event-card-top"><div><h3>${wikiLink(e.name)}</h3><div class="event-map">${wikiLink(e.map)} · ${esc(eventExpansionLabel(e.exp))}</div></div><button class="mini-btn event-fav" data-event-fav="${e.id}" title="Favorite event">${f.includes(e.id)?'★':'☆'}</button></div><div class="event-time">${eventCountdownText(ms)}</div><div class="event-local">Next start: ${e.next.toLocaleTimeString([], {hour:'numeric',minute:'2-digit'})}</div><div class="event-actions">${e.wp?`<button class="btn ghost" data-event-copy="${e.wp}">Copy Waypoint</button>`:''}<a class="btn ghost" href="${wikiUrl(e.name)}" target="_blank" rel="noopener noreferrer">Wiki ↗</a></div></article>`}).join(''):'<div class="card empty" style="grid-column:1/-1">No events match your current filters.</div>';
+ $('#eventGrid').innerHTML=events.length?events.map(e=>{const ms=e.next-now,soon=ms<=15*60000,live=ms<=60000;return `<article class="event-card ${soon?'soon':''} ${live?'live':''}"><div class="event-card-top"><div><h3>${wikiLink(e.name)}</h3><div class="event-map">${wikiLink(e.map)}${e.area?` · ${wikiLink(e.area)}`:''} · ${esc(eventExpansionLabel(e.exp))}${e.verified?' · Verified schedule':''}</div></div><button class="mini-btn event-fav" data-event-fav="${e.id}" title="Favorite event">${f.includes(e.id)?'★':'☆'}</button></div><div class="event-time">${eventCountdownText(ms)}</div><div class="event-local">Next start: ${e.next.toLocaleTimeString([], {hour:'numeric',minute:'2-digit'})}</div><div class="event-actions">${e.wp?`<button class="btn ghost" data-event-copy="${e.wp}">Copy Waypoint</button>`:''}<a class="btn ghost" href="${wikiUrl(e.name)}" target="_blank" rel="noopener noreferrer">Wiki ↗</a></div></article>`}).join(''):'<div class="card empty" style="grid-column:1/-1">No events match your current filters.</div>';
  $$('[data-event-fav]').forEach(b=>b.onclick=()=>{let x=eventFavorites();x=x.includes(b.dataset.eventFav)?x.filter(v=>v!==b.dataset.eventFav):[...x,b.dataset.eventFav];setJSON(STORAGE.eventFavs,x);renderEventTimer();renderDashboard()});
  $$('[data-event-copy]').forEach(b=>b.onclick=()=>navigator.clipboard.writeText(b.dataset.eventCopy).then(()=>toast('Waypoint copied')));
 }
@@ -430,7 +452,7 @@ function getLegendaryMats(){const out=[];legMatNames.forEach(name=>{const id=Obj
 function renderLegendaryMats(){const rows=getLegendaryMats();$('#legMatGrid').innerHTML=rows.length?rows.map(x=>`<div class="stat"><div class="label">${wikiLink(x.name)}</div><div class="value">${x.value.toLocaleString()}</div></div>`).join(''):'<div class="card empty">Connect your API key to load legendary materials and currencies.</div>'}
 function bindStatic(){
  $$('.nav-btn').forEach(b=>b.onclick=()=>showPanel(b.dataset.panel));$('#menuBtn').onclick=()=>$('#sidebar').classList.toggle('open');$('#accountMenuBtn').onclick=()=>{setConnectionUI(state.apiKey?'online':'offline');renderAccountSelect();openModal('accountStatusModal')};$('#modalRefreshBtn').onclick=()=>{closeModal('accountStatusModal');refreshAll()};$('#changeApiBtn').onclick=()=>{closeModal('accountStatusModal');$('#rememberKey').checked=true;openModal('authModal')};$('#switchAccountBtn').onclick=switchSavedAccount;$('#accountSelect').onchange=()=>{};$('#removeAccountBtn').onclick=removeSelectedAccount;$('#unlockBtn').onclick=unlock;$('#customizeBtn').onclick=()=>{renderWidgetPicker();openModal('customizeModal')};$('#doneCustomizeBtn').onclick=()=>closeModal('customizeModal');$('#modalResetBtn').onclick=resetDashboard;$$('[data-close]').forEach(b=>b.onclick=()=>closeModal(b.dataset.close));$$('.modal-backdrop').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)closeModal(m.id)}));document.addEventListener('keydown',e=>{if(e.key==='Escape')$$('.modal-backdrop.show').forEach(m=>closeModal(m.id))});$$('.add-dashboard').forEach(b=>b.onclick=()=>addWidget(b.dataset.widget));
- $('#walletSearchBtn').onclick=()=>renderWallet($('#walletSearch').value);$('#materialSearchBtn').onclick=()=>renderMaterials($('#materialSearch').value);$('#bankSearchBtn').onclick=()=>renderBank($('#bankSearch').value);$('#finderBtn').onclick=runFinder;$('#finderSearch').onkeydown=e=>{if(e.key==='Enter')runFinder()};$('#wikiBtn').onclick=()=>{const q=$('#wikiSearch').value.trim();if(q)window.open(`https://wiki.guildwars2.com/wiki/Special:Search?search=${encodeURIComponent(q)}`,'_blank')};$('#eventSearch').oninput=e=>{const p=eventPrefs();p.query=e.target.value;saveEventPrefs(p)};$('#eventFavoritesOnly').onclick=()=>{const p=eventPrefs();p.favoritesOnly=!p.favoritesOnly;saveEventPrefs(p)};$('#eventResetFilters').onclick=()=>{saveEventPrefs({expansions:EVENT_EXPANSIONS.map(x=>x.id),favoritesOnly:false,query:''});$('#eventSearch').value=''};$('#resetWeeklyBtn').onclick=()=>{localStorage.removeItem(`cszzz-weekly-v2-${accountScope()}-${weekKey()}`);renderWeekly();renderDashboard()};$('#copyRouteBtn').onclick=()=>navigator.clipboard.writeText(provisioners.map(x=>x.wp).join(' ')).then(()=>toast('Route waypoints copied'));
+ $('#walletSearchBtn').onclick=()=>renderWallet($('#walletSearch').value);$('#materialSearchBtn').onclick=()=>renderMaterials($('#materialSearch').value);$('#bankSearchBtn').onclick=()=>renderBank($('#bankSearch').value);$('#finderBtn').onclick=runFinder;$('#finderSearch').onkeydown=e=>{if(e.key==='Enter')runFinder()};$('#wikiBtn').onclick=()=>{const q=$('#wikiSearch').value.trim();if(q)window.open(`https://wiki.guildwars2.com/wiki/Special:Search?search=${encodeURIComponent(q)}`,'_blank')};$('#provisionerSearch').oninput=renderProvisioner;$('#provisionerRegion').onchange=renderProvisioner;$('#copyVisibleProvisionerWaypoints').onclick=()=>{const w=visibleProvisioners().map(x=>x.wp).filter(Boolean);if(!w.length)return toast('No visible waypoints to copy');navigator.clipboard.writeText([...new Set(w)].join(' ')).then(()=>toast('Visible waypoints copied'))};$('#eventSearch').oninput=e=>{const p=eventPrefs();p.query=e.target.value;saveEventPrefs(p)};$('#eventFavoritesOnly').onclick=()=>{const p=eventPrefs();p.favoritesOnly=!p.favoritesOnly;saveEventPrefs(p)};$('#eventResetFilters').onclick=()=>{saveEventPrefs({expansions:EVENT_EXPANSIONS.map(x=>x.id),favoritesOnly:false,query:''});$('#eventSearch').value=''};$('#resetWeeklyBtn').onclick=()=>{localStorage.removeItem(`cszzz-weekly-v2-${accountScope()}-${weekKey()}`);renderWeekly();renderDashboard()};
  $('#addRoutineBtn').onclick=()=>{const name=$('#routineName').value.trim();if(!name)return;const t=routineTasks();t.push({id:crypto.randomUUID(),name,freq:$('#routineFreq').value});setJSON(STORAGE.routine,t);$('#routineName').value='';renderRoutine();renderDashboard();toast('Task added')};
  $('#addGoalBtn').onclick=()=>{const name=$('#goalName').value.trim(),target=+$('#goalTarget').value;if(!name||target<=0)return toast('Add a goal name and target');const g=getJSON(STORAGE.goals,[]);g.push({name,current:+$('#goalCurrent').value||0,target,unit:$('#goalUnit').value.trim()});setJSON(STORAGE.goals,g);$('#goalName').value='';renderGoals();renderDashboard();toast('Goal added')};
  $$('.leader-card').forEach(c=>c.onclick=()=>{const d=leaderBios[c.dataset.leader];$('#leaderName').textContent=d.name;$('#leaderBio').textContent=d.bio;openModal('leaderModal')});
