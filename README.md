@@ -1,3 +1,15 @@
+# Catch Some ZZZ Guild Toolkit v3.16
+
+## Crafting Planner
+
+* Replaced the link-only Crafting Helper with a first-party Crafting Planner.
+* Added public item-name search through the official GW2 item catalog.
+* Added recursive recipe expansion using `/v2/recipes/search` and `/v2/recipes`.
+* Compares base ingredients against Material Storage, Bank, Shared Inventory, and loaded character bags.
+* Added owned, required, and missing quantities, account coverage, filters, Wiki links, recipe tree, and copyable missing-material list.
+* Retained credited links to GW2Efficiency and the Guild Wars 2 Wiki for advanced optimization and final verification.
+* Updated the service-worker cache to `cszzz-toolkit-v3.16`.
+
 # Catch Some ZZZ Guild Toolkit v3.15
 
 ## Event Timer restoration patch
