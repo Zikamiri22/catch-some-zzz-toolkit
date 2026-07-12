@@ -1,3 +1,14 @@
+# Catch Some ZZZ Guild Toolkit v3.17
+
+## Daily Farmer and regression repair
+
+* Added a new Daily Farmer section with verified starter routes for Endless Summer and Castora Magic Mirrors.
+* Added account-scoped daily progress, counters, checkboxes, tracked material balances, reset countdown, custom tasks, Wiki links, and a dashboard widget.
+* Daily progress resets naturally by UTC date, matching the Guild Wars 2 daily reset.
+* Fixed the v3.16 Routine Builder regression caused by stale references to the removed `wikiBtn` and `wikiSearch` elements.
+* Completed a static regression audit of all direct DOM references.
+* Updated the service-worker cache to `cszzz-toolkit-v3.17`.
+
 # Catch Some ZZZ Guild Toolkit v3.16
 
 ## Crafting Planner

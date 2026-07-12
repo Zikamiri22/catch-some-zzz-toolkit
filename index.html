@@ -46,12 +46,38 @@ button,input,select{font:inherit}a{color:var(--cyan)}.app{display:grid;grid-temp
 
 /* v3.16 Crafting Planner */
 .crafting-search-card{display:grid;gap:12px}.crafting-search-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px}.crafting-target-actions{margin-top:2px}.crafting-status{min-height:20px;font-size:13px}.crafting-results{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.crafting-result{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px;border:1px solid rgba(255,255,255,.08);border-radius:13px;background:rgba(0,0,0,.14)}.crafting-result-main{display:flex;align-items:center;gap:11px;min-width:0}.crafting-result img{width:42px;height:42px;border-radius:10px;background:#17111f}.crafting-target-hero{display:flex;justify-content:space-between;align-items:center;gap:18px;margin-bottom:16px}.crafting-target-hero h2{margin:6px 0;font-size:28px}.crafting-material-list,.crafting-tree{display:grid;gap:9px;margin-top:12px}.crafting-material-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:center;padding:12px;border-radius:13px;background:rgba(0,0,0,.15);border:1px solid rgba(255,255,255,.07)}.crafting-material-row.covered{border-color:rgba(85,230,177,.25);background:rgba(85,230,177,.06)}.crafting-material-name{display:flex;align-items:center;gap:10px;min-width:0}.crafting-material-name img{width:36px;height:36px;border-radius:9px}.crafting-numbers{text-align:right;font-variant-numeric:tabular-nums}.crafting-numbers b{display:block}.crafting-tree-node{padding:10px 11px;border-left:2px solid rgba(51,244,252,.25);background:rgba(255,255,255,.025);border-radius:0 10px 10px 0}.crafting-tree-children{margin:8px 0 0 18px;display:grid;gap:7px}.crafting-filter-row{margin-bottom:8px}@media(max-width:760px){.crafting-search-row{grid-template-columns:1fr}.crafting-results{grid-template-columns:1fr}.crafting-target-hero{align-items:flex-start;flex-direction:column}.crafting-target-hero .toolbar{width:100%}.crafting-target-hero .btn{flex:1}.crafting-material-row{grid-template-columns:1fr}.crafting-numbers{text-align:left;padding-left:46px}}
+
+/* v3.17 Daily Farmer */
+.farmer-project-card{display:grid;gap:14px}
+.farmer-project-top{display:flex;justify-content:space-between;align-items:flex-start;gap:18px}
+.farmer-project-controls{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px}
+.farmer-task-list,.farmer-material-list{display:grid;gap:10px;margin-top:10px}
+.farmer-task{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:12px;align-items:center;padding:13px;border-radius:14px;background:rgba(0,0,0,.15);border:1px solid rgba(255,255,255,.07)}
+.farmer-task.done{border-color:rgba(85,230,177,.28);background:linear-gradient(90deg,rgba(85,230,177,.08),rgba(0,0,0,.12))}
+.farmer-task-check{width:20px;height:20px;accent-color:var(--success)}
+.farmer-task-title{font-weight:850;line-height:1.25}
+.farmer-task-desc{font-size:12px;color:var(--muted);margin-top:4px;line-height:1.4}
+.farmer-counter{display:flex;align-items:center;gap:6px;white-space:nowrap}
+.farmer-counter-value{min-width:72px;text-align:center;font-weight:900;font-variant-numeric:tabular-nums}
+.farmer-material{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 13px;border-radius:13px;background:rgba(0,0,0,.14);border:1px solid rgba(255,255,255,.07)}
+.farmer-material b{font-size:18px}
+.farmer-custom-row{display:grid;grid-template-columns:2fr .7fr 1fr auto;gap:9px}
+.farmer-reset-clock{font-size:21px!important}
+.farmer-account-label{font-size:18px!important;overflow-wrap:anywhere}
+@media(max-width:820px){
+  .farmer-project-top{flex-direction:column}
+  .farmer-project-controls{grid-template-columns:1fr}
+  .farmer-custom-row{grid-template-columns:1fr}
+  .farmer-task{grid-template-columns:auto minmax(0,1fr)}
+  .farmer-counter{grid-column:2;justify-content:flex-start}
+}
+
 </style>
 </head>
 <body>
 <div class="app">
 <aside class="sidebar" id="sidebar">
-  <div class="brand"><img src="icons/icon-192.png" alt="Catch Some ZZZ guild logo"><div><strong>CATCH SOME ZZZ</strong><small>Guild Toolkit · v3.16</small><span class="brand-tagline">Built for the guild</span></div></div>
+  <div class="brand"><img src="icons/icon-192.png" alt="Catch Some ZZZ guild logo"><div><strong>CATCH SOME ZZZ</strong><small>Guild Toolkit · v3.17</small><span class="brand-tagline">Built for the guild</span></div></div>
   <div class="nav-group"><div class="nav-label">HOME</div><button class="nav-btn active" data-panel="overview"><span class="nav-icon">⌂</span>My Dashboard</button></div>
   <div class="nav-group"><div class="nav-label">ACCOUNT</div>
     <button class="nav-btn" data-panel="wallet"><span class="nav-icon">◈</span>Wallet</button>
@@ -64,6 +90,7 @@ button,input,select{font:inherit}a{color:var(--cyan)}.app{display:grid;grid-temp
     <button class="nav-btn" data-panel="weekly"><span class="nav-icon">✓</span>Weekly Progress</button>
     <button class="nav-btn" data-panel="events"><span class="nav-icon">◴</span>Event Timer</button>
     <button class="nav-btn" data-panel="fractals"><span class="nav-icon">◇</span>Fractals</button>
+    <button class="nav-btn" data-panel="farmer"><span class="nav-icon">☀</span>Daily Farmer</button>
     <button class="nav-btn" data-panel="routine"><span class="nav-icon">☑</span>Routine Builder</button>
     <button class="nav-btn" data-panel="goals"><span class="nav-icon">◎</span>Personal Goals</button>
   </div>
@@ -108,6 +135,75 @@ button,input,select{font:inherit}a{color:var(--cyan)}.app{display:grid;grid-temp
 
 <section class="panel" id="panel-fractals"><div class="page-title"><div><div class="eyebrow">ACTIVITIES</div><h1>Fractals</h1><p>See today's active Tier 4 and Recommended fractals, then compare them against your account's completion progress.</p></div><button class="btn add-dashboard" data-widget="fractal-progress">＋ Add to Dashboard</button></div><div class="sync-strip"><span class="sync-badge" id="fractalSyncBadge">Fractal sync: waiting</span><span class="muted" id="fractalSyncStamp">Connect or refresh your account to load today's rotation.</span></div><div class="fractal-summary"><div class="fractal-summary-card"><div class="label">Tier 4 Dailies</div><div class="big" id="fractalT4Summary">0 / 3</div></div><div class="fractal-summary-card"><div class="label">Recommended</div><div class="big" id="fractalRecSummary">0 / 3</div></div></div><div class="section-grid completion-grid"><div class="card"><div class="card-head"><h3>Daily Tier 4</h3><span class="source-label" id="fractalT4Source">GW2 API</span></div><div class="fractal-group" id="fractalT4Checks"><div class="empty">Connect your account to load today's Tier 4 fractals.</div></div></div><div class="card"><div class="card-head"><h3>Daily Recommended</h3><span class="source-label" id="fractalRecSource">GW2 API</span></div><div class="fractal-group" id="fractalRecommendedChecks"><div class="empty">Connect your account to load today's Recommended fractals.</div></div></div></div><div class="card" style="margin-top:16px"><div class="card-head"><h3>Long Term Goals</h3><span class="source-label">Personal tracking</span></div><div id="fractalGoals"></div></div><div class="fractal-note">Daily completion is based only on the currently active fractal achievements returned by the GW2 API and your account achievement progress. Long term goals remain personal checklists.</div></section>
 
+
+<section class="panel" id="panel-farmer">
+  <div class="page-title">
+    <div>
+      <div class="eyebrow">ACTIVITIES</div>
+      <h1>Daily Farmer</h1>
+      <p>Build a daily route around the project or material you are working on. Progress resets at the Guild Wars 2 daily reset and stays separate for each saved account.</p>
+    </div>
+    <button class="btn add-dashboard" data-widget="daily-farmer">＋ Add to Dashboard</button>
+  </div>
+
+  <div class="card farmer-project-card">
+    <div class="farmer-project-top">
+      <div>
+        <span class="sync-badge ok">Wiki verified starter routes</span>
+        <h3 style="margin-top:10px">Choose a Farming Route</h3>
+        <p class="muted">Start with an Endless Summer and Castora route, or create your own daily checklist.</p>
+      </div>
+      <a class="btn ghost" id="farmerProjectWiki" href="https://wiki.guildwars2.com/wiki/Endless_Summer" target="_blank" rel="noopener noreferrer">Project Wiki ↗</a>
+    </div>
+    <div class="farmer-project-controls">
+      <select class="input" id="farmerProjectSelect">
+        <option value="endless-summer">Endless Summer · Castora</option>
+        <option value="castora-mirrors">Castora Magic Mirrors</option>
+        <option value="custom">My Custom Daily Route</option>
+      </select>
+      <button class="btn ghost" id="farmerResetTodayBtn">Reset Today</button>
+    </div>
+    <div class="fractal-note" id="farmerProjectNote"></div>
+  </div>
+
+  <div class="grid stats">
+    <div class="stat"><div class="label">Daily Progress</div><div class="value" id="farmerCompletionPct">0%</div><div class="progress"><span id="farmerCompletionBar" style="width:0%"></span></div></div>
+    <div class="stat"><div class="label">Tasks Complete</div><div class="value" id="farmerTaskSummary">0 / 0</div></div>
+    <div class="stat"><div class="label">Next Reset</div><div class="value farmer-reset-clock" id="farmerResetClock">—</div></div>
+    <div class="stat"><div class="label">Account</div><div class="value farmer-account-label" id="farmerAccountLabel">Guest</div></div>
+  </div>
+
+  <div class="section-grid completion-grid">
+    <div class="card">
+      <div class="card-head"><h3>Today’s Route</h3><span class="source-label">Personal checklist</span></div>
+      <div id="farmerTaskList" class="farmer-task-list"></div>
+    </div>
+    <div class="card">
+      <div class="card-head"><h3>Tracked Materials</h3><span class="source-label">Loaded account</span></div>
+      <div id="farmerMaterialList" class="farmer-material-list"></div>
+      <div class="fractal-note">Balances only include locations already loaded by the toolkit. Character bags require the Characters permission.</div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <div class="card-head"><h3>Add a Custom Daily Task</h3><span class="source-label">Your route</span></div>
+    <div class="farmer-custom-row">
+      <input class="input" id="farmerCustomTaskName" placeholder="Example: Complete Verdant Brink night meta">
+      <input class="input" id="farmerCustomTaskTarget" type="number" min="0" placeholder="Optional target">
+      <input class="input" id="farmerCustomTaskUnit" placeholder="Unit, optional">
+      <button class="btn primary" id="farmerAddCustomTaskBtn">Add Task</button>
+    </div>
+  </div>
+
+  <div class="source-strip">
+    Sources:
+    <a href="https://wiki.guildwars2.com/wiki/Magic_Mirror" target="_blank" rel="noopener noreferrer">Magic Mirror ↗</a> ·
+    <a href="https://wiki.guildwars2.com/wiki/Long-Lost_Keepsake_Box" target="_blank" rel="noopener noreferrer">Long-Lost Keepsake Box ↗</a> ·
+    <a href="https://wiki.guildwars2.com/wiki/Seer_Artifact_Chest" target="_blank" rel="noopener noreferrer">Seer Artifact Chest ↗</a> ·
+    <a href="https://wiki.guildwars2.com/wiki/Endless_Summer" target="_blank" rel="noopener noreferrer">Endless Summer ↗</a>
+  </div>
+</section>
+
 <section class="panel" id="panel-routine"><div class="page-title"><div><div class="eyebrow">ACTIVITIES</div><h1>Routine Builder</h1><p>Build daily and weekly checklists around the things you actually care about.</p></div><button class="btn add-dashboard" data-widget="daily-routine">＋ Add to Dashboard</button></div><div class="section-grid"><div class="card"><h3>Daily Routine</h3><div id="dailyRoutine"></div></div><div class="card"><h3>Weekly Routine</h3><div id="weeklyRoutine"></div></div><div class="card"><h3>Add Task</h3><input class="input" id="routineName" placeholder="Task name"><select class="input" id="routineFreq" style="margin-top:8px"><option value="daily">Daily</option><option value="weekly">Weekly</option></select><button class="btn primary" id="addRoutineBtn" style="margin-top:8px;width:100%">Add Task</button></div></div></section>
 
 <section class="panel" id="panel-goals"><div class="page-title"><div><div class="eyebrow">ACTIVITIES</div><h1>Personal Goals</h1><p>Track legendary funds, collections, achievement milestones, currencies, or anything else you are working toward.</p></div><button class="btn add-dashboard" data-widget="personal-goals">＋ Add to Dashboard</button></div><div class="section-grid"><div class="card"><h3>Add Goal</h3><input class="input" id="goalName" placeholder="Goal name"><div class="search-row" style="margin-top:8px"><input class="input" id="goalCurrent" type="number" min="0" value="0" placeholder="Current"><input class="input" id="goalTarget" type="number" min="1" value="100" placeholder="Target"></div><input class="input" id="goalUnit" style="margin-top:8px" placeholder="Unit, optional"><button class="btn primary" id="addGoalBtn" style="margin-top:8px;width:100%">Add Goal</button></div><div class="card" style="grid-column:span 2"><h3>Your Goals</h3><div id="goalsList" class="list"><div class="empty">Add your first personal goal.</div></div></div></div></section>
@@ -133,7 +229,7 @@ button,input,select{font:inherit}a{color:var(--cyan)}.app{display:grid;grid-temp
   <img src="icons/icon-192.png" alt="Catch Some ZZZ logo">
   <div class="footer-copy">
     <div><strong>Sources:</strong> <a href="https://wiki.guildwars2.com/wiki/Main_Page" target="_blank" rel="noopener noreferrer">GW2 Wiki</a> · <a href="https://snowcrows.com/" target="_blank" rel="noopener noreferrer">Snow Crows</a> · <a href="https://mukluklabs.com/" target="_blank" rel="noopener noreferrer">Mukluk</a> · <a href="https://hardstuck.gg/" target="_blank" rel="noopener noreferrer">Hardstuck</a> · <a href="https://guildjen.com/" target="_blank" rel="noopener noreferrer">GuildJen</a> · <a href="https://gw2efficiency.com/" target="_blank" rel="noopener noreferrer">GW2Efficiency</a></div>
-    <div class="footer-disclaimer">Catch Some ZZZ Guild Toolkit · Web Edition · v3.16 · Unofficial fan project. Not affiliated with or endorsed by ArenaNet or NCSOFT.</div>
+    <div class="footer-disclaimer">Catch Some ZZZ Guild Toolkit · Web Edition · v3.17 · Unofficial fan project. Not affiliated with or endorsed by ArenaNet or NCSOFT.</div>
   </div>
 </div>
 </main></div>
@@ -145,7 +241,7 @@ button,input,select{font:inherit}a{color:var(--cyan)}.app{display:grid;grid-temp
 <div class="toast" id="toast"></div>
 <script>
 const API='https://api.guildwars2.com/v2';
-const STORAGE={dashboard:'cszzz-dashboard-layout-v1',favorites:'cszzz-currency-favorites',goals:'cszzz-personal-goals-v1',routine:'cszzz-routine-tasks-v1',eventPrefs:'cszzz-event-timer-preferences-v1',eventFavs:'cszzz-event-timer-favorites-v1',accounts:'cszzz-api-accounts-v1',activeAccount:'cszzz-active-api-account-v1'};
+const STORAGE={dashboard:'cszzz-dashboard-layout-v1',favorites:'cszzz-currency-favorites',goals:'cszzz-personal-goals-v1',routine:'cszzz-routine-tasks-v1',eventPrefs:'cszzz-event-timer-preferences-v1',eventFavs:'cszzz-event-timer-favorites-v1',accounts:'cszzz-api-accounts-v1',activeAccount:'cszzz-active-api-account-v1',farmerConfig:'cszzz-daily-farmer-config-v1'};
 const standardWidgets=['account-snapshot','weekly-progress','daily-routine','personal-goals','quick-tools'];
 const widgetCatalog={
  'account-snapshot':{name:'Account Snapshot',icon:'◈',wide:true,panel:'wallet',render:renderAccountSnapshot},
@@ -154,6 +250,7 @@ const widgetCatalog={
  'weekly-progress':{name:'Weekly Progress',icon:'✓',wide:true,panel:'weekly',render:renderWeeklyWidget},
  'daily-routine':{name:"Today's Routine",icon:'☑',panel:'routine',render:renderRoutineWidget},
  'fractal-progress':{name:'Fractal Progress',icon:'◇',panel:'fractals',render:renderFractalWidget},
+ 'daily-farmer':{name:'Daily Farmer',icon:'☀',panel:'farmer',render:renderDailyFarmerWidget},
  'provisioner-progress':{name:'Provisioner Progress',icon:'✧',panel:'provisioner',render:renderProvisionerWidget},
  'personal-goals':{name:'Personal Goals',icon:'◎',panel:'goals',render:renderGoalsWidget},
  'legendary-goal':{name:'Legendary Armory',icon:'✦',panel:'legendary',render:renderLegendaryWidget},
@@ -283,7 +380,7 @@ function achievementProgressMap(){return Object.fromEntries((state.accountAchiev
 function achievementIsCurrentDone(a){if(!a)return false;return a.done===true||((a.current||0)>0&&(a.max||0)>0&&(a.current>=a.max))}
 function relevantAchievementRows(kind){const re=kind==='strike'?/strike/i:/fractal/i;const catIds=new Set(state.achievementCategories.filter(c=>re.test(c.name||'')).flatMap(c=>c.achievements||[]));const p=achievementProgressMap();return [...catIds].map(id=>({detail:state.achievementDetails[id],progress:p[id]})).filter(x=>x.detail)}
 
-function renderAll(){renderDashboard();if(state.crafting?.plan)craftingRenderPlan();renderWallet();renderMaterials();renderBank();renderLegendary();renderLegendaryMats();renderFractals();renderWeekly();renderProvisioner();renderEventTimer()}
+function renderAll(){renderDashboard();renderDailyFarmer();if(state.crafting?.plan)craftingRenderPlan();renderWallet();renderMaterials();renderBank();renderLegendary();renderLegendaryMats();renderFractals();renderWeekly();renderProvisioner();renderEventTimer()}
 function renderWallet(filter=''){const coin=state.wallet.find(x=>x.id===1)?.value;$('#walletCoin').textContent=coin!=null?formatCoin(coin):'—';$('#walletCount').textContent=state.wallet.length||'—';const fav=getJSON(STORAGE.favorites,[]);const q=filter.toLowerCase();$('#walletList').innerHTML=state.wallet.filter(w=>(state.currencies[w.id]?.name||'').toLowerCase().includes(q)).sort((a,b)=>(state.currencies[a.id]?.name||'').localeCompare(state.currencies[b.id]?.name||'')).map(w=>{const m=state.currencies[w.id]||{name:`Currency ${w.id}`};const on=fav.includes(w.id);return `<div class="list-row"><div><b>${wikiLink(m.name)}</b><div class="meta">${w.value.toLocaleString()}</div></div><button class="mini-btn" data-favcurrency="${w.id}">${on?'★':'☆'}</button></div>`}).join('')||'<div class="empty">No currencies found.</div>';$$('[data-favcurrency]').forEach(b=>b.onclick=()=>toggleCurrency(+b.dataset.favcurrency))}
 function toggleCurrency(id){let f=getJSON(STORAGE.favorites,[]);f=f.includes(id)?f.filter(x=>x!==id):[...f,id];setJSON(STORAGE.favorites,f);renderWallet($('#walletSearch').value);renderDashboard()}
 function itemRows(entries,filter){const q=filter.toLowerCase();return entries.filter(Boolean).filter(x=>(state.items[x.id]?.name||'').toLowerCase().includes(q)).map(x=>{const name=state.items[x.id]?.name||`Item ${x.id}`;return `<div class="list-row"><div><b>${wikiLink(name)}</b><div class="meta">Item ID ${x.id}</div></div><b>${x.count?.toLocaleString()||1}</b></div>`}).join('')||'<div class="empty">No items found.</div>'}
@@ -510,16 +607,161 @@ function craftingTreeHTML(node){return `<div class="crafting-tree-node"><div><b>
 function craftingRenderPlan(){const target=state.crafting.target,plan=state.crafting.plan;if(!target||!plan)return;$('#craftingTargetName').innerHTML=wikiLink(target.name);$('#craftingTargetMeta').textContent=`${target.type||'Item'} · Item ID ${target.id}`;$('#craftingTargetWiki').href=wikiUrl(target.name);const mats=plan.materials,covered=mats.filter(x=>x.owned>=x.required),missing=mats.filter(x=>x.owned<x.required),reqTotal=mats.reduce((a,x)=>a+x.required,0),ownedApplied=mats.reduce((a,x)=>a+Math.min(x.owned,x.required),0);$('#craftingRequiredCount').textContent=mats.length;$('#craftingCoveredCount').textContent=covered.length;$('#craftingMissingCount').textContent=missing.length;$('#craftingCoveragePct').textContent=(reqTotal?Math.round(ownedApplied/reqTotal*100):0)+'%';const filter=state.crafting.filter||'all',shown=mats.filter(x=>filter==='all'||(filter==='missing'&&x.owned<x.required)||(filter==='owned'&&x.owned>=x.required));$('#craftingMaterialsList').innerHTML=shown.length?shown.map(x=>{const need=Math.max(0,x.required-x.owned),ok=need===0;return `<div class="crafting-material-row ${ok?'covered':''}"><div class="crafting-material-name">${x.icon?`<img src="${esc(x.icon)}" alt="">`:''}<div><b>${wikiLink(x.name)}</b><div class="meta">${ok?'Requirement covered':`${need.toLocaleString()} still needed`}</div></div></div><div class="crafting-numbers"><b>${x.owned.toLocaleString()} / ${x.required.toLocaleString()}</b><span class="meta">Owned / Required</span></div></div>`}).join(''):'<div class="empty">No materials match this filter.</div>';$('#craftingRecipeTree').innerHTML=craftingTreeHTML(plan.tree);$$('[data-crafting-filter]').forEach(b=>b.classList.toggle('active',b.dataset.craftingFilter===filter))}
 function craftingCopyMissing(){const rows=state.crafting.plan?.materials?.filter(x=>x.owned<x.required)||[];if(!rows.length)return toast('No missing materials');const text=rows.map(x=>`${x.name}: ${x.required-x.owned} needed (${x.owned}/${x.required} owned)`).join('\n');navigator.clipboard.writeText(text).then(()=>toast('Missing material list copied'))}
 
+
+const FARMER_PRESETS={
+  'endless-summer':{
+    name:'Endless Summer · Castora',
+    wiki:'Endless Summer',
+    note:'This starter route focuses on repeatable Castora rewards used while working toward Endless Summer. Completing a Magic Mirror spawns one Long-Lost Keepsake Box and nearby Obscured Chests. The Basilica Vaults reward chest can be opened once per day per account.',
+    materials:[
+      {name:'Raw Enchanting Stone',target:100},
+      {name:'Unusual Coin',target:null},
+      {name:'Chromatic Sap',target:null},
+      {name:'Ethereal Key Charge',target:null}
+    ],
+    tasks:[
+      {id:'mirrors',name:'Complete Magic Mirrors',desc:'Solve the target challenge and reveal the reward chests around each mirror.',type:'counter',target:10,unit:'mirrors',wiki:'Magic Mirror'},
+      {id:'keepsakes',name:'Open Long-Lost Keepsake Boxes',desc:'A Long-Lost Keepsake Box appears at the completed mirror.',type:'counter',target:10,unit:'boxes',wiki:'Long-Lost Keepsake Box'},
+      {id:'obscured',name:'Open Obscured Chests',desc:'Use Ethereal Key Charges on the small, medium, or large chests revealed near mirrors.',type:'counter',target:5,unit:'chests',wiki:'Obscured Chest'},
+      {id:'starlit',name:'Farm Starlit Weald mirror rewards',desc:'With Obscured Riches, Starlit Weald mirror chests can award Raw Enchanting Stone.',type:'check',wiki:'Obscured Riches'},
+      {id:'basilica',name:'Complete The Basilica Vaults',desc:'Open the Seer Artifact Chest after the meta. It can be opened once per day per account.',type:'check',wiki:'Seer Artifact Chest'}
+    ]
+  },
+  'castora-mirrors':{
+    name:'Castora Magic Mirrors',
+    wiki:'Magic Mirror',
+    note:'Track the number of mirrors and reward chests you complete today. This route does not assume a universal account-wide mirror cap.',
+    materials:[
+      {name:'Unusual Coin',target:null},
+      {name:'Raw Enchanting Stone',target:null},
+      {name:'Chromatic Sap',target:null},
+      {name:'Ethereal Key Charge',target:null}
+    ],
+    tasks:[
+      {id:'mirrors',name:'Complete Magic Mirrors',desc:'Finish the mirror challenge at the locations you choose.',type:'counter',target:10,unit:'mirrors',wiki:'Magic Mirror'},
+      {id:'keepsakes',name:'Open Long-Lost Keepsake Boxes',desc:'Collect the box that appears at each solved mirror.',type:'counter',target:10,unit:'boxes',wiki:'Long-Lost Keepsake Box'},
+      {id:'small',name:'Open Small Obscured Chests',desc:'Small chests require Ethereal Key Charges.',type:'counter',target:5,unit:'chests',wiki:'Small Obscured Chest'},
+      {id:'medium',name:'Open Medium Obscured Chests',desc:'Medium chests require more Ethereal Key Charges.',type:'counter',target:3,unit:'chests',wiki:'Medium Obscured Chest'},
+      {id:'large',name:'Open Large Obscured Chests',desc:'Large chests require the most Ethereal Key Charges.',type:'counter',target:1,unit:'chest',wiki:'Large Obscured Chest'}
+    ]
+  },
+  'custom':{
+    name:'My Custom Daily Route',
+    wiki:'Farming',
+    note:'Add your own daily activities below. They reset with the Guild Wars 2 daily reset.',
+    materials:[],
+    tasks:[]
+  }
+};
+function farmerConfig(){
+  const cfg=getJSON(STORAGE.farmerConfig,{project:'endless-summer',customTasks:[]});
+  if(!FARMER_PRESETS[cfg.project])cfg.project='endless-summer';
+  if(!Array.isArray(cfg.customTasks))cfg.customTasks=[];
+  return cfg;
+}
+function saveFarmerConfig(cfg){setJSON(STORAGE.farmerConfig,cfg)}
+function farmerDayKey(){return new Date().toISOString().slice(0,10)}
+function farmerStateKey(){return `cszzz-daily-farmer-v1-${accountScope()}-${farmerDayKey()}`}
+function farmerState(){return getJSON(farmerStateKey(),{})}
+function saveFarmerState(s){setJSON(farmerStateKey(),s);renderDailyFarmer();renderDashboard()}
+function farmerTasks(){
+  const cfg=farmerConfig(),preset=FARMER_PRESETS[cfg.project];
+  return [...preset.tasks,...cfg.customTasks.map(x=>({...x,custom:true}))];
+}
+function farmerTaskDone(task,value){return task.type==='counter'?(+value||0)>=(+task.target||1):value===true}
+function farmerProgress(){
+  const tasks=farmerTasks(),s=farmerState(),done=tasks.filter(t=>farmerTaskDone(t,s[t.id])).length;
+  return {done,total:tasks.length,pct:tasks.length?Math.round(done/tasks.length*100):0};
+}
+function farmerOwnedByName(name){
+  const lower=String(name).toLowerCase();
+  const currencyEntry=Object.entries(state.currencies||{}).find(([,x])=>String(x.name||'').toLowerCase()===lower);
+  if(currencyEntry){const row=state.wallet.find(x=>x.id===+currencyEntry[0]);if(row)return row.value||0}
+  const item=Object.values(state.items||{}).find(x=>String(x.name||'').toLowerCase()===lower);
+  if(!item)return null;
+  let total=0;
+  const add=arr=>(arr||[]).filter(Boolean).forEach(x=>{if(x.id===item.id)total+=x.count||1});
+  add(state.materials);add(state.bank);add(state.shared);
+  (state.characters||[]).forEach(c=>(c.bags||[]).filter(Boolean).forEach(b=>add(b.inventory||[])));
+  return total;
+}
+function farmerResetText(){
+  const now=new Date(),next=new Date(now);next.setUTCHours(24,0,0,0);
+  const total=Math.max(0,Math.floor((next-now)/1000)),h=Math.floor(total/3600),m=Math.floor((total%3600)/60);
+  return `${h}h ${String(m).padStart(2,'0')}m`;
+}
+function renderDailyFarmerWidget(){
+  const cfg=farmerConfig(),p=farmerProgress(),tasks=farmerTasks(),s=farmerState();
+  const next=tasks.find(t=>!farmerTaskDone(t,s[t.id]));
+  return `<div style="font-size:32px;font-weight:900">${p.done}/${p.total}</div><div class="progress"><span style="width:${p.pct}%"></span></div><p class="muted">${esc(FARMER_PRESETS[cfg.project].name)}</p>${next?`<div class="list-row"><span>Next</span><b>${esc(next.name)}</b></div>`:'<div class="list-row"><span>Daily route</span><b>Complete ✓</b></div>'}`;
+}
+function renderDailyFarmer(){
+  if(!$('#farmerProjectSelect'))return;
+  const cfg=farmerConfig(),preset=FARMER_PRESETS[cfg.project],tasks=farmerTasks(),s=farmerState(),p=farmerProgress();
+  $('#farmerProjectSelect').value=cfg.project;
+  $('#farmerProjectNote').textContent=preset.note;
+  $('#farmerProjectWiki').href=wikiUrl(preset.wiki);
+  $('#farmerCompletionPct').textContent=p.pct+'%';
+  $('#farmerCompletionBar').style.width=p.pct+'%';
+  $('#farmerTaskSummary').textContent=`${p.done} / ${p.total}`;
+  $('#farmerResetClock').textContent=farmerResetText();
+  $('#farmerAccountLabel').textContent=state.account?.name||'Guest';
+
+  $('#farmerTaskList').innerHTML=tasks.length?tasks.map(t=>{
+    const value=s[t.id],done=farmerTaskDone(t,value);
+    const control=t.type==='counter'
+      ? `<div class="farmer-counter"><button class="mini-btn" data-farmer-delta="-1" data-farmer-id="${esc(t.id)}">−</button><span class="farmer-counter-value">${+value||0} / ${t.target} ${esc(t.unit||'')}</span><button class="mini-btn" data-farmer-delta="1" data-farmer-id="${esc(t.id)}">＋</button></div>`
+      : `<span class="completion-pill ${done?'done':''}">${done?'✓ Complete':'Not complete'}</span>`;
+    return `<div class="farmer-task ${done?'done':''}"><input class="farmer-task-check" type="checkbox" data-farmer-check="${esc(t.id)}" ${done?'checked':''}><div><div class="farmer-task-title">${wikiLink(t.wiki||t.name,t.name)}</div><div class="farmer-task-desc">${esc(t.desc||'Personal daily task')}</div>${t.custom?`<button class="mini-btn" data-farmer-delete="${esc(t.id)}" style="margin-top:7px">Remove</button>`:''}</div>${control}</div>`;
+  }).join(''):'<div class="empty">Add a custom task to begin your route.</div>';
+
+  $('#farmerMaterialList').innerHTML=preset.materials.length?preset.materials.map(m=>{
+    const value=farmerOwnedByName(m.name);
+    const display=value==null?'Not loaded':value.toLocaleString();
+    return `<div class="farmer-material"><div><b>${wikiLink(m.name)}</b>${m.target?`<div class="meta">Project target: ${m.target.toLocaleString()}</div>`:''}</div><b>${display}</b></div>`;
+  }).join(''):'<div class="empty">This custom route does not have tracked materials yet.</div>';
+
+  $$('[data-farmer-check]').forEach(c=>c.onchange=()=>{
+    const task=tasks.find(t=>t.id===c.dataset.farmerCheck),x=farmerState();
+    x[task.id]=task.type==='counter'?(c.checked?task.target:0):c.checked;
+    saveFarmerState(x);
+  });
+  $$('[data-farmer-delta]').forEach(b=>b.onclick=()=>{
+    const task=tasks.find(t=>t.id===b.dataset.farmerId),x=farmerState();
+    x[task.id]=Math.max(0,(+x[task.id]||0)+(+b.dataset.farmerDelta));
+    saveFarmerState(x);
+  });
+  $$('[data-farmer-delete]').forEach(b=>b.onclick=()=>{
+    const next=farmerConfig();next.customTasks=next.customTasks.filter(t=>t.id!==b.dataset.farmerDelete);
+    saveFarmerConfig(next);renderDailyFarmer();renderDashboard();
+  });
+}
+function farmerAddCustomTask(){
+  const name=$('#farmerCustomTaskName').value.trim();
+  if(!name)return toast('Add a task name');
+  const target=+$('#farmerCustomTaskTarget').value||0,unit=$('#farmerCustomTaskUnit').value.trim();
+  const cfg=farmerConfig();
+  cfg.customTasks.push({id:`custom-${Date.now()}`,name,desc:'Personal daily farming task',type:target>0?'counter':'check',target:target||undefined,unit,wiki:name});
+  saveFarmerConfig(cfg);
+  $('#farmerCustomTaskName').value='';$('#farmerCustomTaskTarget').value='';$('#farmerCustomTaskUnit').value='';
+  renderDailyFarmer();renderDashboard();toast('Daily farming task added');
+}
+function startFarmerClock(){
+  clearInterval(startFarmerClock.t);
+  startFarmerClock.t=setInterval(()=>{if($('#panel-farmer')?.classList.contains('active'))$('#farmerResetClock').textContent=farmerResetText()},30000);
+}
+
 function bindStatic(){
  $$('.nav-btn').forEach(b=>b.onclick=()=>showPanel(b.dataset.panel));$('#menuBtn').onclick=()=>$('#sidebar').classList.toggle('open');$('#accountMenuBtn').onclick=()=>{setConnectionUI(state.apiKey?'online':'offline');renderAccountSelect();openModal('accountStatusModal')};$('#modalRefreshBtn').onclick=()=>{closeModal('accountStatusModal');refreshAll()};$('#changeApiBtn').onclick=()=>{closeModal('accountStatusModal');$('#rememberKey').checked=true;openModal('authModal')};$('#switchAccountBtn').onclick=switchSavedAccount;$('#accountSelect').onchange=()=>{};$('#removeAccountBtn').onclick=removeSelectedAccount;$('#unlockBtn').onclick=unlock;$('#customizeBtn').onclick=()=>{renderWidgetPicker();openModal('customizeModal')};$('#doneCustomizeBtn').onclick=()=>closeModal('customizeModal');$('#modalResetBtn').onclick=resetDashboard;$$('[data-close]').forEach(b=>b.onclick=()=>closeModal(b.dataset.close));$$('.modal-backdrop').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)closeModal(m.id)}));document.addEventListener('keydown',e=>{if(e.key==='Escape')$$('.modal-backdrop.show').forEach(m=>closeModal(m.id))});$$('.add-dashboard').forEach(b=>b.onclick=()=>addWidget(b.dataset.widget));
- $('#craftingTargetSearchBtn').onclick=()=>craftingSearchItems($('#craftingTargetSearch').value);$('#craftingTargetSearch').onkeydown=e=>{if(e.key==='Enter')craftingSearchItems(e.target.value)};$$('[data-crafting-popular]').forEach(b=>b.onclick=()=>craftingBuildPlan(+b.dataset.craftingPopular));$('#craftingCopyMissingBtn').onclick=craftingCopyMissing;$$('[data-crafting-filter]').forEach(b=>b.onclick=()=>{state.crafting.filter=b.dataset.craftingFilter;craftingRenderPlan()});
- $('#walletSearchBtn').onclick=()=>renderWallet($('#walletSearch').value);$('#materialSearchBtn').onclick=()=>renderMaterials($('#materialSearch').value);$('#bankSearchBtn').onclick=()=>renderBank($('#bankSearch').value);$('#finderBtn').onclick=runFinder;$('#finderSearch').onkeydown=e=>{if(e.key==='Enter')runFinder()};$('#wikiBtn').onclick=()=>{const q=$('#wikiSearch').value.trim();if(q)window.open(`https://wiki.guildwars2.com/wiki/Special:Search?search=${encodeURIComponent(q)}`,'_blank')};$('#provisionerSearch').oninput=renderProvisioner;$('#provisionerRegion').onchange=renderProvisioner;$('#copyVisibleProvisionerWaypoints').onclick=()=>{const w=visibleProvisioners().map(x=>x.wp).filter(Boolean);if(!w.length)return toast('No visible waypoints to copy');navigator.clipboard.writeText([...new Set(w)].join(' ')).then(()=>toast('Visible waypoints copied'))};$('#eventSearch').oninput=e=>{const p=eventPrefs();p.query=e.target.value;saveEventPrefs(p)};$('#eventFavoritesOnly').onclick=()=>{const p=eventPrefs();p.favoritesOnly=!p.favoritesOnly;saveEventPrefs(p)};$('#eventResetFilters').onclick=()=>{saveEventPrefs({expansions:EVENT_EXPANSIONS.map(x=>x.id),favoritesOnly:false,query:''});$('#eventSearch').value=''};$('#resetWeeklyBtn').onclick=()=>{localStorage.removeItem(`cszzz-weekly-v2-${accountScope()}-${weekKey()}`);renderWeekly();renderDashboard()};
+ $('#farmerProjectSelect').onchange=e=>{const cfg=farmerConfig();cfg.project=e.target.value;saveFarmerConfig(cfg);renderDailyFarmer();renderDashboard()};$('#farmerResetTodayBtn').onclick=()=>{localStorage.removeItem(farmerStateKey());renderDailyFarmer();renderDashboard();toast('Today’s farming route reset')};$('#farmerAddCustomTaskBtn').onclick=farmerAddCustomTask;
+  $('#craftingTargetSearchBtn').onclick=()=>craftingSearchItems($('#craftingTargetSearch').value);$('#craftingTargetSearch').onkeydown=e=>{if(e.key==='Enter')craftingSearchItems(e.target.value)};$$('[data-crafting-popular]').forEach(b=>b.onclick=()=>craftingBuildPlan(+b.dataset.craftingPopular));$('#craftingCopyMissingBtn').onclick=craftingCopyMissing;$$('[data-crafting-filter]').forEach(b=>b.onclick=()=>{state.crafting.filter=b.dataset.craftingFilter;craftingRenderPlan()});
+ $('#walletSearchBtn').onclick=()=>renderWallet($('#walletSearch').value);$('#materialSearchBtn').onclick=()=>renderMaterials($('#materialSearch').value);$('#bankSearchBtn').onclick=()=>renderBank($('#bankSearch').value);$('#finderBtn').onclick=runFinder;$('#finderSearch').onkeydown=e=>{if(e.key==='Enter')runFinder()};$('#provisionerSearch').oninput=renderProvisioner;$('#provisionerRegion').onchange=renderProvisioner;$('#copyVisibleProvisionerWaypoints').onclick=()=>{const w=visibleProvisioners().map(x=>x.wp).filter(Boolean);if(!w.length)return toast('No visible waypoints to copy');navigator.clipboard.writeText([...new Set(w)].join(' ')).then(()=>toast('Visible waypoints copied'))};$('#eventSearch').oninput=e=>{const p=eventPrefs();p.query=e.target.value;saveEventPrefs(p)};$('#eventFavoritesOnly').onclick=()=>{const p=eventPrefs();p.favoritesOnly=!p.favoritesOnly;saveEventPrefs(p)};$('#eventResetFilters').onclick=()=>{saveEventPrefs({expansions:EVENT_EXPANSIONS.map(x=>x.id),favoritesOnly:false,query:''});$('#eventSearch').value=''};$('#resetWeeklyBtn').onclick=()=>{localStorage.removeItem(`cszzz-weekly-v2-${accountScope()}-${weekKey()}`);renderWeekly();renderDashboard()};
  $('#addRoutineBtn').onclick=()=>{const name=$('#routineName').value.trim();if(!name)return;const t=routineTasks();t.push({id:crypto.randomUUID(),name,freq:$('#routineFreq').value});setJSON(STORAGE.routine,t);$('#routineName').value='';renderRoutine();renderDashboard();toast('Task added')};
  $('#addGoalBtn').onclick=()=>{const name=$('#goalName').value.trim(),target=+$('#goalTarget').value;if(!name||target<=0)return toast('Add a goal name and target');const g=getJSON(STORAGE.goals,[]);g.push({name,current:+$('#goalCurrent').value||0,target,unit:$('#goalUnit').value.trim()});setJSON(STORAGE.goals,g);$('#goalName').value='';renderGoals();renderDashboard();toast('Goal added')};
  $$('.leader-card').forEach(c=>c.onclick=()=>{const d=leaderBios[c.dataset.leader];$('#leaderName').textContent=d.name;$('#leaderBio').textContent=d.bio;openModal('leaderModal')});
 }
 function resetDashboard(){setJSON(STORAGE.dashboard,{customized:false,widgets:standardWidgets.slice()});renderDashboard();renderWidgetPicker();updateAddButtons();toast('Standard dashboard restored')}
-function init(){setConnectionUI('offline');bindStatic();renderRoutine();renderGoals();renderWeekly();renderFractals();renderProvisioner();renderEventTimer();renderWings();renderDashboard();renderWidgetPicker();updateAddButtons();renderAccountSelect();$('#eventSearch').value=eventPrefs().query||'';startEventClock();const profiles=savedAccounts();const active=activeAccountName();let profile=profiles.find(x=>x.name===active)||profiles[0];const legacy=localStorage.getItem('gw2-api-key');const key=profile?.key||legacy;if(key){state.apiKey=key;$('#rememberKey').checked=true;activateApiKey(key,{remember:true,quiet:true}).catch(()=>{setConnectionUI('offline');openModal('authModal')})}else openModal('authModal')}
+function init(){setConnectionUI('offline');bindStatic();renderRoutine();renderDailyFarmer();renderGoals();renderWeekly();renderFractals();renderProvisioner();renderEventTimer();renderWings();renderDashboard();renderWidgetPicker();updateAddButtons();renderAccountSelect();$('#eventSearch').value=eventPrefs().query||'';startEventClock();startFarmerClock();const profiles=savedAccounts();const active=activeAccountName();let profile=profiles.find(x=>x.name===active)||profiles[0];const legacy=localStorage.getItem('gw2-api-key');const key=profile?.key||legacy;if(key){state.apiKey=key;$('#rememberKey').checked=true;activateApiKey(key,{remember:true,quiet:true}).catch(()=>{setConnectionUI('offline');openModal('authModal')})}else openModal('authModal')}
 init();
 if('serviceWorker' in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js'));
 </script>
