@@ -1,3 +1,10 @@
+# Catch Some ZZZ Guild Toolkit v3.18
+
+## Leadership styling update
+
+* Added a thin gold outline around Ziki's leadership card so the Guildmaster card stands out from the other leadership boxes.
+* Preserved the existing Catch Some ZZZ theme and layout.
+
 # Catch Some ZZZ Guild Toolkit v3.17
 
 ## Daily Farmer and regression repair
